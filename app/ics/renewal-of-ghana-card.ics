@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:DPCALENDAR
+CALSCALE:GREGORIAN
+X-WR-TIMEZONE:UTC
+BEGIN:VEVENT
+DTSTART:20140929T090000Z
+DTEND:20140929T170000Z
+UID:8bedd3288b3c21057c9c135b98cb3c1c
+SUMMARY:ODIP: Renewal of Ghana Residence Card
+DTSTAMP:20140917T140343Z
+DESCRIPTION:ODIP has arranged for officials of the Ghana National Identification Authority to come to campus to issue and renew Ghana Cards for all international faculty/staff. This is mandatory for all for foreign nationals residing in Ghana for more than 90 days. The fee is $120 for a new application and $60 for renewal.
+X-ALT-DESC;FMTTYPE=text/html:<p>ODIP has arranged for officials of the Ghana National Identification Authority to come to campus to issue and renew Ghana Cards for all international faculty/staff. This is mandatory for all for foreign nationals residing in Ghana for more than 90 days. The fee is $120 for a new application and $60 for renewal.</p>
+LOCATION:ODIP Office
+GEO:5.75991;-0.220062
+X-ACCESS:1
+X-MODIFIED:20140919T082122Z
+X-HITS:90
+X-URL:
+X-COLOR:676767
+END:VEVENT
+END:VCALENDAR

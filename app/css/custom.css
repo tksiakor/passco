@@ -1,0 +1,97 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 24, 2014, 5:46:51 AM
+    Author     : WORLANYO
+*/
+
+
+body {
+    background: url(../images/bacgroundimage.jpg) !important;
+    /* font-family: 'Oswald', sans-serif; */
+    background-attachment:fixed;
+    background-size:100%;
+}
+
+.ui-page, .ui-content{  
+    background: transparent;
+    margin-top: 20px;
+    margin-right: 10%;
+    margin-left: 5%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.ui-btn {
+    border:solid 15px #ffffff;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    /*background-color: rgba(215, 40, 40, 0.9);*/
+    /*background: rgba(215, 40, 40, 0.9);*/
+    color: rgba(215, 40, 40, 0.9);
+    background-color: transparent;
+    color: aliceblue;
+    font-size: x-large;
+    /*min-width: 70px;*/
+}
+
+
+.ui-btn ui-shadow{
+    margin-top: 350px;
+    margin-right: 10%;
+    margin-left: 10%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+/*@import url(http://fonts.googleapis.com/css?family=Oswald);*/
+
+/*.btn{
+    margin: 4px;
+    box-shadow: 1px 1px 5px #888888;
+}
+
+.btn-xs{
+    font-weight: 300;
+}
+   
+.btn-hot {
+color: #fff;
+background-color: #db5566;
+border-bottom:2px solid #af4451;
+}
+
+.btn-hot:hover, .btn-sky.active:focus, .btn-hot:focus, .open>.dropdown-toggle.btn-hot {
+color: #fff;
+background-color: #df6a78;
+border-bottom:2px solid #b25560;
+outline: none;}
+
+
+.btn-hot:active, .btn-hot.active {
+color: #fff;
+background-color: #c04b59;
+border-top:2px solid #9a3c47;
+margin-top: 2px;
+}*/
+/*
+body{  
+position: fixed; 
+top: 0; 
+left: 0; 
+width: 100% !important; 
+height: 100% !important; 
+background: url(http://biomassmagazine.com/uploads/posts/web/2012/10/GiantKingGrass_13500613871449.jpg) no-repeat center center fixed !important; 
+-webkit-background-size: cover; 
+-moz-background-size: cover; 
+-o-background-size: cover; 
+background-size: cover; 
+z-index: -1; 
+} 
+.ui-page{ 
+background:none; 
+}*/
