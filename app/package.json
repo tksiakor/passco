@@ -1,0 +1,12 @@
+{
+  "name" : "iCal",
+  "version" : "0.9.1",
+  "main" : "ical.js",
+  "description" : "SE Project for iCal",
+  "dependencies" : {
+    "express" : "4.9.5",
+    "ical" : "0.3.1",
+    "ical-generator" : "0.1.8",
+    "http-server" : "0.6.1"
+  }
+}
