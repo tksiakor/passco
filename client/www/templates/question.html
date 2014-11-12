@@ -1,0 +1,18 @@
+<ion-view title="Social Studies">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+    <h2>Question</h2>
+    <div class="list card">
+    <h4>{{quesans.question}}</h4>
+			<ion-radio ng-model="answer" value="a">A. {{quesans.a}}</ion-radio>
+			<ion-radio ng-model="answer" value="b">B. {{quesans.b}}</ion-radio>
+			<ion-radio ng-model="answer" value="c">C. {{quesans.c}}</ion-radio>
+			<ion-radio ng-model="answer" value="d">D. {{quesans.d}}</ion-radio>
+			<tt>selected: {{answer}}</tt>
+			<tt>Correct: {{quesans.ans}}</tt>
+	</div>
+	<a class="button button-block button-positive" ng-click="check('{{answer}}')">Submit</a>
+  </ion-content>
+</ion-view>
