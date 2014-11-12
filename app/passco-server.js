@@ -1,9 +1,10 @@
 var express = require('express');
 var app = express();
-
+var mongoose = require('mongoose');
 var gen = require('ical-generator'),
     http = require('http');
     
+mongoose.connect('mongodb://127.0.0.1/passcoSchema');    
 var cal1 = gen();
 
 app.get('/addCal', function(req, res){
@@ -29,6 +30,14 @@ cal1.addEvent({
     location: ''+req.param('location'),
     url: ''+req.param('url')
 });
+
+});
+
+mongoose.model('std', {name : String} );
+app.get('/testdb', function(req, res){
+  mongoose.model('std').find(function(err, std){
+    res.send(std);
+  })
 
 });
 
@@ -92,5 +101,8 @@ app.get('/ical2', function(req, res){
 });
  
 
+var server = app.listen(8000, function() {
+    console.log('Listening on port %d', server.address().port);
+});
 
-app.listen(process.env.PORT);
+// app.listen(process.env.PORT);
