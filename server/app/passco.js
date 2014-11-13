@@ -35,9 +35,21 @@ var ssSchema = new mongoose.Schema({
 
 })
 
-//Test model
+//Users schema definition
+var userSchema = new mongoose.Schema({
+	fname: {type:String},
+	lname: {type:String},
+	username: {type:String},
+	password: {type:String, encrypted:true},
+	ssA: {type:Number},
+	ssB: {type:Number},
+	ssC: {type:Number}
+})
+
+//models
 var passco = mongoose.model('passco', passcoSchema, "passco" );
 var socialTopic = mongoose.model('socialTopic', ssSchema, "socialTopic");
+var user = mongoose.model('user', userSchema, 'user');
 
 
 //To retrieve all
@@ -102,6 +114,54 @@ app.get('/insert', function(req, res){
 
 })
 
+})
+
+//USERS
+//To add a user
+app.get('/register', function(req, res){
+	res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST");
+
+	user.create({
+	    fname:''+req.param("fname"),
+	    lname: ''+req.param("lname"),
+	    username: ''+req.param("uname"),
+	    password: ''+req.param("pwd"),
+	   ssA: 0,
+	   ssB: 0,
+	   ssC: 0
+
+	}, function (err, fname, lname) {
+
+	  if(err){
+	  	console.log(err);
+	  	console.log("There's a problem with registering somewhere... Find it!");
+	  }
+	  console.log(fname + " " + lname + " has been added to the db");
+	  
+
+})
+
+})
+
+//To auth user
+
+
+
+app.get('/auth', function(req, res){
+
+		//check if a user's password is valid like so:
+		user.findOne({ username: ''+req.param("uname") }, function(err, user) {
+		    if (user.password === (''+req.param("pwd"))) {
+		        // ... user is legit
+		        console.log("user found");
+		        res.end("1");
+		    }
+		    else{
+		    console.log("user not found");
+		    res.end("0");
+		}
+		})
 })
 
 
