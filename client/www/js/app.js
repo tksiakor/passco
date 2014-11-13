@@ -47,12 +47,42 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
+
     .state('app.playlists', {
       url: "/playlists",
       views: {
         'menuContent' :{
           templateUrl: "templates/playlists.html",
           controller: 'PlaylistsCtrl'
+        }
+      }
+    })
+
+    .state('app.subjects', {
+      url: "/subjects",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/subjects.html"
+        }
+      }
+    })
+
+    .state('app.topics', {
+      url: "/topics",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/topics.html",
+          controller: 'topics'
+        }
+      }
+    })
+
+   .state('app.home', {
+      url: "/home",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/home.html",
+          controller: 'home'
         }
       }
     })
