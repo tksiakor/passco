@@ -28,12 +28,17 @@ var passcoSchema = new mongoose.Schema({
 
 })
 
+//Social Studies Topics schema definition
+var ssSchema = new mongoose.Schema({
+    code: {type:String},
+    name: {type:String}
+
+})
+
 //Test model
 var passco = mongoose.model('passco', passcoSchema, "passco" );
+var socialTopic = mongoose.model('socialTopic', ssSchema, "socialTopic");
 
-
-//Main Passco model
-//var passco = mongoose.model('passco', passcoSchema);
 
 //To retrieve all
 app.get('/getall', function(req, res){
@@ -43,6 +48,18 @@ app.get('/getall', function(req, res){
 	
 	passco.find(function(err, passcos){
 		res.send(passcos);
+	})
+
+})
+
+//To retrieve Social Studies Subjects
+app.get('/listss', function(req, res){
+	res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST");
+
+	socialTopic.find(function(err, topics){
+		console.log("Working..");
+		res.send(topics);
 	})
 
 })
