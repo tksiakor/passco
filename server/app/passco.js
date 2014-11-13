@@ -39,7 +39,7 @@ var ssSchema = new mongoose.Schema({
 var userSchema = new mongoose.Schema({
 	fname: {type:String},
 	lname: {type:String},
-	username: {type:String},
+	username: {type:String, unique:true},
 	password: {type:String, encrypted:true},
 	ssA: {type:Number},
 	ssB: {type:Number},
