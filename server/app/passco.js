@@ -149,7 +149,8 @@ app.get('/register', function(req, res){
 
 
 app.get('/auth', function(req, res){
-
+	res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST");
 		//check if a user's password is valid like so:
 		user.findOne({ username: ''+req.param("uname") }, function(err, user) {
 		    if (user.password === (''+req.param("pwd"))) {
