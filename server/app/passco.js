@@ -43,7 +43,11 @@ var userSchema = new mongoose.Schema({
 	password: {type:String, encrypted:true},
 	ssA: {type:Number},
 	ssB: {type:Number},
-	ssC: {type:Number}
+	ssC: {type:Number},
+	ssTotal: {type:Number},
+	ssAMarks: {type:Number},
+	ssBMarks: {type:Number},
+	ssCMarks: {type:Number}
 })
 
 //models
@@ -136,14 +140,18 @@ app.get('/register', function(req, res){
 	    password: ''+req.param("pwd"),
 	   ssA: 0,
 	   ssB: 0,
-	   ssC: 0
+	   ssC: 0,
+	   ssTotal: 0,
+		ssAMarks: 0,
+		ssBMarks: 0,
+		ssCMarks: 0
 
 	}, function (err, fname, lname) {
 
 	  if(err){
 	  	console.log(err);
 	  	console.log("There's a problem with registering somewhere... Find it!");
-	  	res.end("0" + err);
+	  	res.end("0");
 	  }
 	  else{
 	  console.log(fname + " " + lname + " has been added to the db");
