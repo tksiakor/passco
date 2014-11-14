@@ -1,0 +1,12 @@
+<ion-view title="Questions">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+    <ion-list>
+      <ion-item ng-repeat="question in questions" href="#/app/questions/{{question._id}}">
+        {{question.question}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

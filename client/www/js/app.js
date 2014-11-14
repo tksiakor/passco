@@ -47,6 +47,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
+
+    // .state('app.question', {
+    //   url: "/question",
+    //   views: {
+    //     'menuContent' :{
+    //       templateUrl: "templates/question.html"
+    //     }
+    //   }
+    // })
+
     .state('app.playlists', {
       url: "/playlists",
       views: {
@@ -63,6 +73,26 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         'menuContent' :{
           templateUrl: "templates/playlist.html",
           controller: 'PlaylistCtrl'
+        }
+      }
+    })
+
+    .state('app.questions', {
+      url: "/questions",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/questions.html",
+          controller: 'QuestionsCtrl'
+        }
+      }
+    })
+
+    .state('app.one', {
+      url: "/questions/:questionId",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/question.html",
+          controller: 'QuestionCtrl'
         }
       }
     });
