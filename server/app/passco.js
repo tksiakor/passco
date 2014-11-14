@@ -92,6 +92,8 @@ app.get('/gettopic', function(req, res){
 
 //To insert
 app.get('/insert', function(req, res){
+	res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST")
 
 	passco.create({
 	    year: [{year:''+req.param("year"), session:''+req.param("month")}],
@@ -107,9 +109,14 @@ app.get('/insert', function(req, res){
 
 	}, function (err, year, subject, topic, question, ans_a, ans_b, ans_c, ans_d, ans_e, answer) {
 	  if(err){
+
 	  	console.log(err);
 	  	console.log("There's a problem somewhere... Find it!");
+	  	
 	  }
+	  else{
+	  
+	}
 	  
 
 })
@@ -136,8 +143,12 @@ app.get('/register', function(req, res){
 	  if(err){
 	  	console.log(err);
 	  	console.log("There's a problem with registering somewhere... Find it!");
+	  	res.end("0" + err);
 	  }
+	  else{
 	  console.log(fname + " " + lname + " has been added to the db");
+	  res.end("Registered");
+	}
 	  
 
 })
