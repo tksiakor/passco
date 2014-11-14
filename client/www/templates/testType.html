@@ -1,0 +1,33 @@
+<ion-view title="Type of test">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+        <h1>Type of test</h1>
+        <label class="item item-radio">
+            <input type="radio" ng-model="testType" name="group" value="1">
+
+            <div class="item-content">
+                Topic based
+            </div>
+            <i class="radio-icon ion-checkmark"></i>
+        </label>
+        <label class="item item-radio">
+            <input type="radio" ng-model="testType" name="group" value="2">
+
+            <div class="item-content">
+                Year based
+            </div>
+            <i class="radio-icon ion-checkmark"></i>
+        </label>
+
+        <a href="{{selectedItems.testTypeUrl}}" class="button button-full button-positive" ng-click="selectedItems.setTestType(testType,$event)">
+            Next
+            <!--<i class="icon ion-arrow-return-right"></i>-->
+        </a>
+        Selected : {{selectedItems.testType}}
+        Selected : {{testType}}
+        subject : {{selectedItems.subject}}
+        url : {{selectedItems.testTypeUrl}}
+    </ion-content>
+</ion-view>

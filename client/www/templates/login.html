@@ -1,26 +1,35 @@
 <div class="modal">
-  <ion-header-bar>
-    <h1 class="title">Login</h1>
-    <div class="buttons">
-      <button class="button button-clear" ng-click="closeLogin()">Close</button>
-    </div>
-  </ion-header-bar>
-  <ion-content>
-    <form ng-submit="doLogin()">
-      <div class="list">
-        <label class="item item-input">
-          <span class="input-label">Username</span>
-          <input type="text" ng-model="loginData.username">
-        </label>
-        <label class="item item-input">
-          <span class="input-label">Password</span>
-          <input type="password" ng-model="loginData.password">
-        </label>
-        <label class="item">
-          <button class="button button-block button-positive" type="submit">Log in</button>
-        </label>
-      </div>
-    </form>
-  </ion-content>
+    <ion-header-bar>
+        <h1 class="title">Login</h1>
+
+        <div class="buttons">
+            <!--<button class="button button-clear" ng-click="closeLogin()">Close</button>-->
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <form ng-submit="doLogin()" name="loginForm" novalidate>
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">Username</span>
+                    <input type="text" name="loginData.username" ng-model="loginData.username" ng-minlength="3" required>
+                    <p ng-show="loginForm.loginData.username.$invalid && !loginForm.loginData.username.$pristine" class="alert-danger">Username is required.</p>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Password</span>
+                    <input type="password" name="loginData.password" ng-model="loginData.password" ng-minlength="7" required>
+                    <br>
+
+                </label>
+                <p ng-show="loginForm.loginData.password.$invalid && !loginForm.loginData.password.$pristine" class="alert-danger">Password is required.</p>
+                <label class="item">
+                    <input class="button button-block button-positive" type="submit" value="Login" ng-disabled="loginForm.$invalid">
+                </label>
+            </div>
+            <a class="button button-clear button-positive" href="#/app/signup">
+                Need an account?Signup here
+            </a>
+        </form>
+
+    </ion-content>
 </div>
 

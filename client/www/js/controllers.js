@@ -1,8 +1,9 @@
 angular.module('starter.controllers', [])
 
-    .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
+    .controller('AppCtrl', function ($scope, $ionicModal, $timeout, $http, $location) {
         // Form data for the login modal
         $scope.loginData = {};
+        $scope.signUpData = {};
 
         // Create the login modal that we will use later
         $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -21,18 +22,56 @@ angular.module('starter.controllers', [])
             $scope.modal.show();
         };
 
+        $scope.user={
+            isAuthenticated : false,
+            username : "",
+            authenticate : function(){
+                if(this.isAuthenticated==false)
+                $location.path("/app/login");
+            },
+            startApp : function () {
+                $location.path("/app/home");
+            },
+            logout : function(){
+                this.isAuthenticated=false;
+                this.username = "";
+            }
+        };
+
         // Perform the login action when the user submits the login form
         $scope.doLogin = function () {
             console.log('Doing login', $scope.loginData);
+            $http.get("http://128.199.54.243:3000/auth?uname="+$scope.loginData.username+"&pwd="+$scope.loginData.password+"")
+                .success(function (response) {
+                    console.log(response);
+                    if(response ==1) {
+                        $scope.user.isAuthenticated = true;
+                        $scope.user.username = $scope.loginData.username;
+                        $scope.user.startApp();
+                    }
+                });
+        };
+
+        // Perform the signup action when the user submits the signup form
+        $scope.doSignup = function () {
+            console.log('Doing signup', $scope.signUpData);
 
             // Simulate a login delay. Remove this and replace with your login
             // code if using a login system
+            $http.get("http://128.199.54.243:3000/register?fname="+$scope.signUpData.firstName+"&uname="+$scope.signUpData.username+"&lname="+$scope.signUpData.lastName+"&pwd="+$scope.signUpData.password+"")
+                .success(function (response) {
+                    console.log(response);
+                    if(response==1){
+                        $location.path("/app/login");
+                    }
+                });
             $timeout(function () {
                 $scope.closeLogin();
             }, 1000);
         };
 
         $scope.question = "Who is the president of Ghana?";
+
         $scope.answers = [
             {text: "John Mills", value: "a"},
             {text: "Jerry John Rawlings", value: "b"},
@@ -41,12 +80,51 @@ angular.module('starter.controllers', [])
         ];
 
         $scope.subjects = [
-            {subject: "Core Mathematics", id: 1},
-            {subject: "English Language", id: 2},
-            {subject: "Social Studies", id: 3},
-            {subject: "Integrated Science", id: 4}
+            //{subject: "Core Mathematics", id: 1},
+            //{subject: "English Language", id: 2},
+            {subject: "Social Studies", id: "Social Studies"}
+            //{subject: "Integrated Science", id: 4}
         ];
+
+        $scope.currentTopics = {
+            requestTopics: function () {
+                $http.get("http://128.199.54.243:3000/listss")
+                    .success(function (response) {
+                        //this.topics = response;
+                        $scope.currentTopics.topics = response;
+                        console.log($scope.currentTopics.topics);
+                    });
+            },
+            topics: ""
+        };
+
+        $scope.selectedItems = {
+            topic: "",
+            subject: "",
+            testType: "",
+            testTypeUrl: "",
+            setTopic: function (newTopic) {
+                this.topic = newTopic;
+            },
+            setSubject: function (newSubject, e) {
+                this.subject = newSubject;
+                $scope.currentTopics.requestTopics();
+                //console.log($scope.currentTopics.topics);
+            },
+            setTestType: function (newType, e) {
+                this.testType = newType;
+                if (newType == 1)
+                    this.setTestTypeUrl("#/app/topics");
+                else
+                    this.setTestTypeUrl("#/app/years");
+            },
+            setTestTypeUrl: function (url) {
+                this.testTypeUrl = url;
+            }
+        };
+
     })
+
 
     .controller('PlaylistsCtrl', function ($scope) {
         $scope.playlists = [
@@ -60,20 +138,65 @@ angular.module('starter.controllers', [])
     })
 
     .controller('topics', function ($scope) {
-        $scope.topics = [
-            {name: "Fractions", id: 1},
-            {name: "Algebra", id: 2},
-            {name: "Logic", id: 3},
-            {name: "Inequalities", id: 4},
-            {name: "Transformation", id: 5},
-            {name: "Numbers", id: 6},
-            {name: "Graphs", id: 7},
-            {name: "Sets", id: 8}
-        ];
+        $scope.user.authenticate();
     })
 
-    .controller('home', function ($scope) {
+    .controller('subjects',function ($scope){
+        $scope.user.authenticate();
+    })
 
+    .controller('test',function ($scope){
+        $scope.user.authenticate();
+    })
+
+    .controller('testType',function ($scope){
+        $scope.user.authenticate();
+    })
+
+    .controller('years',function ($scope){
+        $scope.user.authenticate();
+    })
+
+    .controller('signup', function ($scope) {
+        $scope.user = {
+            username: "",
+            password: "",
+            firstName: "",
+            lastName: "",
+            setUsername: function (newUsername) {
+                this.username = newUsername;
+            },
+            setPassword: function (newPassword) {
+                this.password = newPassword;
+            },
+            setFirstName: function (newFirstName) {
+                this.password = newFirstName;
+            },
+            setLastName: function (newLastName) {
+                this.password = newLastName;
+            },
+            setAll:function (username,password,firstName,lastName){
+                this.username=username;
+                this.password=password;
+                this.firstName = firstName;
+                this.lastName = lastName;
+                //console.log(this.firstName,this.password,this.firstName,this.lastName);
+            },
+            signup:function(username,password,firstName,lastName){
+                this.setAll(username,password,firstName,lastName);
+            }
+        }
+
+    })
+
+
+    .controller('home', function ($scope) {
+        $scope.user.authenticate();
+        //ask for subject
+        //by topic or by year
+        //get questions
+        //but start button to start timer
+        //show question
     })
 
     .controller('PlaylistCtrl', function ($scope, $stateParams) {
