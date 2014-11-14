@@ -164,9 +164,6 @@ app.get('/register', function(req, res){
 })
 
 //To auth user
-
-
-
 app.get('/auth', function(req, res){
 	res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, POST");
@@ -185,6 +182,24 @@ app.get('/auth', function(req, res){
 })
 
 
+
+//Update marks
+app.get('/setSSMarks', function(req, res){
+	res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST");
+
+    user.findOneAndUpdate({username:req.param("uname")}, {ssAMarks:req.param("A"),ssBMarks:req.param("B"), ssCMarks:req.param("C"), ssTotal:req.param("total")},function(err){
+    	if(err){
+    		console.log(err);
+    		res.end("Failed to Update");
+    	}
+    	else
+    	{
+    		res.end("Updated");
+    	}
+    })
+
+})
 
 http.createServer(app).listen(app.get('port'), function(){
 	console.log('Port:' + app.get('port'))
