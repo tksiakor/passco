@@ -182,6 +182,17 @@ app.get('/auth', function(req, res){
 })
 
 
+//Retrieve a user and his/her marks
+app.get('/getUser', function(req, res){
+	res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST");
+
+    user.findOne({ username: ''+req.param("uname") }, function(err, user) {
+		    res.send(user);
+		}
+	)
+})
+
 
 //Update marks
 app.get('/setSSMarks', function(req, res){
