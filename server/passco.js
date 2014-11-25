@@ -100,7 +100,8 @@ app.get('/insert', function(req, res){
     res.header("Access-Control-Allow-Methods", "GET, POST")
 
 	passco.create({
-	    year: [{year:''+req.param("year"), session:''+req.param("month")}],
+	    IIyear:''+req.param("year"), 
+	    session:''+req.param("month"),
 	    subject:''+req.param("subject"),
 	    topic: ''+req.param("topic"),
 	    question: ''+req.param("question"),
