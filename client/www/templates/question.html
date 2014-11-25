@@ -1,0 +1,36 @@
+<ion-view title="Social Studies">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+
+  <ion-content class="has-header">
+	<div class="list card">
+ 	 <div class="item-header item-text-wrap">
+	    <h4>{{activeQ.question}}</h4>
+ 	 </div>
+ 	 
+			<ion-radio ng-model="ans.selected" ng-click="chosen(1)" name="{{activeQ._id}}" value="1" class="item-text-wrap">A. {{activeQ.ans_a}}</ion-radio>
+			<ion-radio ng-model="ans.selected" ng-click="chosen(2)" name="{{activeQ._id}}" value="2" class="item-text-wrap">B. {{activeQ.ans_b}}</ion-radio>
+			<ion-radio ng-model="ans.selected" ng-click="chosen(3)" name="{{activeQ._id}}" value="3" class="item-text-wrap">C. {{activeQ.ans_c}}</ion-radio>
+			<ion-radio ng-model="ans.selected" ng-click="chosen(4)" name="{{activeQ._id}}" value="4" class="item-text-wrap">D. {{activeQ.ans_d}}</ion-radio>
+			<tt>selected: {{ans.value}}</tt>
+			<tt>Correct: {{activeQ.answer}} </tt>
+ </div>
+
+  </ion-content>
+
+  <ion-footer-bar align-title="left" class="bar-positive tabs tabs-icon-left">
+  <a class="tab-item" ng-click="activeQ=prevQ()">
+    <i class="icon ion-ios7-arrow-back"></i>
+    
+  </a>
+  <a class="tab-item">
+    <i class="icon"></i>
+    <strong>{{count+1}}/{{size}}</strong>
+  </a>
+  <a class="tab-item" ng-click="activeQ=nextQ()" ng-disabled="state()">
+    <i class="icon ion-ios7-arrow-forward"></i>
+    
+  </a>
+</ion-footer-bar>
+</ion-view>

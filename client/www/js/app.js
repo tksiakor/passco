@@ -23,6 +23,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
 
+<<<<<<< HEAD
             .state('app', {
                 url: "/app",
                 abstract: true,
@@ -147,4 +148,142 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         // if none of the above states are matched, use this as the fallback
         $urlRouterProvider.otherwise('/app/login');
     });
+=======
+    .state('app.browse', {
+      url: "/browse",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/browse.html"
+        }
+      }
+    })
 
+    // .state('app.question', {
+    //   url: "/question",
+    //   views: {
+    //     'menuContent' :{
+    //       templateUrl: "templates/question.html"
+    //     }
+    //   }
+    // })
+
+    .state('app.playlists', {
+      url: "/playlists",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/playlists.html",
+          controller: 'PlaylistsCtrl'
+        }
+      }
+    })
+
+    .state('app.questions', {
+      url: "/questions",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/questions.html",
+          controller: 'QuestionCtrl'
+        }
+      }
+    })
+
+    .state('app.one', {
+      url: "/questions/:questionId",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/question.html",
+          controller: 'QuestionCtrl'
+        }
+      }
+    })
+>>>>>>> d82891dbf43f5132dbe9a026dfabf3352ede8426
+
+    .state('app.subjects', {
+                url: "/subjects",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/subjects.html"
+                    }
+                }
+            })
+
+            .state('app.topics', {
+                url: "/topics",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/topics.html",
+                        controller: 'topics'
+                    }
+                }
+            })
+
+            .state('app.home', {
+                url: "/home",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/home.html",
+                        controller: 'home'
+                    }
+                }
+            })
+
+            .state('app.testType', {
+                url: "/testType",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/testType.html"
+                    }
+                }
+            })
+
+            .state('app.signup', {
+                url: "/signup",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/signup.html",
+                        controller: 'signup'
+                    }
+                }
+            })
+
+            .state('app.login', {
+                url: "/login",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login.html"
+                        //controller: 'signup'
+                    }
+                }
+            })
+
+            .state('app.years', {
+                url: "/years",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/years.html"
+                    }
+                }
+            })
+
+            .state('app.test', {
+                url: '/test',
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/test.html",
+                        controller: 'test'
+                    }
+                }
+            })
+
+            .state('app.single', {
+                url: "/playlists/:playlistId",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/playlist.html",
+                        controller: 'PlaylistCtrl'
+                    }
+                }
+            });
+  // if none of the above states are matched, use this as the fallback
+  $urlRouterProvider.otherwise('/app/login');
+});
