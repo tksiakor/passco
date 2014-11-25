@@ -6,7 +6,7 @@ var gen = require('ical-generator'),
     
 mongoose.connect('mongodb://127.0.0.1/passcoSchema'); 
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3001);
 
 //Model registering
 
