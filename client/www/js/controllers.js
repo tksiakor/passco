@@ -1,31 +1,12 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $http, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $http, $timeout, $location) {
 
-  var url = "http://128.199.54.243:3000/getall";
-  // $http.get(url).success(function (data) {
-  //       console.log(url);
-  //       $scope.get = data;
-  //       console.log($scope.get);
-
-  //   $scope.quesans = {
-  //                     "id": $scope.get._id, 
-  //                     "session" :$scope.get.session, 
-  //                     "subject":$scope.get.subject, 
-  //                     "topic": $scope.get.topic, 
-  //                     "question":$scope.get.question,
-  //                     "a":$scope.get.ans_a,
-  //                     "b":$scope.get.ans_b,
-  //                     "c":$scope.get.ans_c,
-  //                     "d":$scope.get.ans_d,
-  //                     "e":$scope.get.ans_e,
-  //                     "ans":$scope.get.answer,
-  //                     "year":$scope.get.year
-  //                   }
-  //     });
+  var url = "http://128.199.54.243:3001/getall";
 
   // Form data for the login modal
   $scope.loginData = {};
+  $scope.signUpData = {};
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -44,16 +25,97 @@ angular.module('starter.controllers', [])
     $scope.modal.show();
   };
 
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
+  $scope.user={
+            isAuthenticated : true, //false by default
+            username : "",
+            authenticate : function(){
+                if(this.isAuthenticated==false)
+                $location.path("/app/login");
+            },
+            startApp : function () {
+                $location.path("/app/home");
+            },
+            logout : function(){
+                this.isAuthenticated=false;
+                this.username = "";
+            }
+        };
 
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
+  // Perform the login action when the user submits the login form
+  $scope.doLogin = function () {
+            //console.log('Doing login', $scope.loginData);
+            //$http.get("http://128.199.54.243:3001/auth?uname="+$scope.loginData.username+"&pwd="+$scope.loginData.password+"")
+                //.success(function (response) {
+                    //console.log(response);
+                    //if(response ==1) {
+                        $scope.user.isAuthenticated = true;
+                        $scope.user.username = $scope.loginData.username;
+                        $scope.user.startApp();
+                    //}
+                //});
   };
+
+  // Perform the signup action when the user submits the signup form
+        $scope.doSignup = function () {
+            console.log('Doing signup', $scope.signUpData);
+
+            // Simulate a login delay. Remove this and replace with your login
+            // code if using a login system
+            $http.get("http://128.199.54.243:3001/register?fname="+$scope.signUpData.firstName+"&uname="+$scope.signUpData.username+"&lname="+$scope.signUpData.lastName+"&pwd="+$scope.signUpData.password+"")
+                .success(function (response) {
+                    console.log(response);
+                    if(response==1){
+                        $location.path("/app/login");
+                    }
+                });
+            $timeout(function () {
+                $scope.closeLogin();
+            }, 1000);
+        };
+
+    $scope.subjects = [
+            //{subject: "Core Mathematics", id: 1},
+            //{subject: "English Language", id: 2},
+            {subject: "Social Studies", id: "Social Studies"}
+            //{subject: "Integrated Science", id: 4}
+        ];
+
+        $scope.currentTopics = {
+            requestTopics: function () {
+                $http.get("http://128.199.54.243:3001/listss")
+                    .success(function (response) {
+                        //this.topics = response;
+                        $scope.currentTopics.topics = response;
+                        console.log($scope.currentTopics.topics);
+                    });
+            },
+            topics: ""
+        };
+
+        $scope.selectedItems = {
+            topic: "",
+            subject: "",
+            testType: "",
+            testTypeUrl: "",
+            setTopic: function (newTopic) {
+                this.topic = newTopic;
+            },
+            setSubject: function (newSubject, e) {
+                this.subject = newSubject;
+                $scope.currentTopics.requestTopics();
+                //console.log($scope.currentTopics.topics);
+            },
+            setTestType: function (newType, e) {
+                this.testType = newType;
+                if (newType == 1)
+                    this.setTestTypeUrl("#/app/topics");
+                else
+                    this.setTestTypeUrl("#/app/years");
+            },
+            setTestTypeUrl: function (url) {
+                this.testTypeUrl = url;
+            }
+        };
 
    $scope.connect = function(meth, link){
       var request = $http({
@@ -67,37 +129,12 @@ angular.module('starter.controllers', [])
       return request;
   }
 
-
-
-  
-  // {"_id":"546478ff8923185200139ca5",
-  //   "session":"J",
-  //   "subject":"Social Studies",
-  //   "topic":"A",
-  //   "question":"Population census in Ghana is conducted under the auspices of the ",
-  //   "ans_a":"Ministry of Economic Planning",
-  //   "ans_b":"Ministry of Information",
-  //   "ans_c":"Statistical Service",
-  //   "ans_d":"Electoral Commission",\
-  //   "ans_e":"",
-  //   "answer":4,
-  //   "year":[]
-  // }
-
-
-
   $scope.toggleSubmit = function(){
     $scope.state = "disabled";
   }
 
   $scope.check = function(){
-    
-      //console.log("Chosen: " + chosen);
-      //console.log("Passed: " + $scope.answer);
-      //console.log("Correct: " + $scope.quesans.ans);
 
-      
-    
   }
 
 })
@@ -133,6 +170,59 @@ angular.module('starter.controllers', [])
     
   
 })
+
+.controller('topics', function ($scope) {
+        $scope.user.authenticate();
+    })
+
+    .controller('subjects',function ($scope){
+        $scope.user.authenticate();
+    })
+
+    .controller('test',function ($scope){
+        $scope.user.authenticate();
+    })
+
+    .controller('testType',function ($scope){
+        $scope.user.authenticate();
+    })
+
+    .controller('years',function ($scope){
+        $scope.user.authenticate();
+    })
+
+    .controller('signup', function ($scope) {
+        $scope.user = {
+            username: "",
+            password: "",
+            firstName: "",
+            lastName: "",
+            setUsername: function (newUsername) {
+                this.username = newUsername;
+            },
+            setPassword: function (newPassword) {
+                this.password = newPassword;
+            },
+            setFirstName: function (newFirstName) {
+                this.password = newFirstName;
+            },
+            setLastName: function (newLastName) {
+                this.password = newLastName;
+            },
+            setAll:function (username,password,firstName,lastName){
+                this.username=username;
+                this.password=password;
+                this.firstName = firstName;
+                this.lastName = lastName;
+                //console.log(this.firstName,this.password,this.firstName,this.lastName);
+            },
+            signup:function(username,password,firstName,lastName){
+                this.setAll(username,password,firstName,lastName);
+            }
+        }
+
+    })
+
 
 .controller('QuestionCtrl', function($scope, $stateParams) {
   $scope.questions = [
@@ -208,6 +298,7 @@ angular.module('starter.controllers', [])
       $scope.activeQ = $scope.questions[0];
 
       $scope.nextQ = function(){
+        $scope.ans = {selected:false};
         // Grade current question
         if($scope.ans.value===$scope.activeQ.answer){
           console.log("Correct!"+$scope.ans.value);
@@ -215,7 +306,7 @@ angular.module('starter.controllers', [])
         else{
           console.log("Wrong"+$scope.ans.value);
         }
-        $scope.ans = {selected:false};
+        
         // Move to next question
         if($scope.count<$scope.size-1)
           $scope.count++;
@@ -235,4 +326,18 @@ angular.module('starter.controllers', [])
 
 .controller('ResultsCtrl', function($scope) {
   
-});
+})
+
+
+
+    .controller('home', function ($scope) {
+        $scope.user.authenticate();
+        //ask for subject
+        //by topic or by year
+        //get questions
+        //but start button to start timer
+        //show question
+    })
+
+    .controller('PlaylistCtrl', function ($scope, $stateParams) {
+    });

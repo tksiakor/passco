@@ -1,0 +1,20 @@
+<ion-view title="Subjects">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+        <!--<h1>Subjects</h1>-->
+
+        <div ng-init="index=0">
+            <div ng-repeat="subject in subjects">
+                <div class="row responsive-sm">
+                    <a href="#/app/testType">
+                        <div class="col" ng-click="selectedItems.setSubject(subject.id,$event)">
+                            <div class="box">{{subject.subject}}</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,16 @@
+<ion-view title="Topics">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+        <!--<h1>Topics</h1>-->
+        <ul class="list">
+            <a class="item item-icon-right" href="#/app/test" ng-repeat="topic in currentTopics.topics" ng-click="selectedItems.setTopic(topic.code)">
+                {{topic.name}}
+                <i class="icon ion-ios7-arrow-right"></i>
+
+            </a>
+        </ul>
+
+    </ion-content>
+</ion-view>

@@ -1,1 +1,12 @@
-/* Empty. Add your own CSS if you like */
+.box {
+    background-color: dodgerblue;
+    height: 100px;
+    text-align: center;
+    font-size: 25px;
+    color:#ffffff;
+    padding: 30px;
+}
+
+a{
+    text-decoration: none;
+}/* Empty. Add your own CSS if you like */
