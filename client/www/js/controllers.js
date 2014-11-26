@@ -1,31 +1,5 @@
 angular.module('starter.controllers', [])
 
-<<<<<<< HEAD
-    .controller('AppCtrl', function ($scope, $ionicModal, $timeout, $http, $location) {
-        // Form data for the login modal
-        $scope.loginData = {};
-        $scope.signUpData = {};
-
-        // Create the login modal that we will use later
-        $ionicModal.fromTemplateUrl('templates/login.html', {
-            scope: $scope
-        }).then(function (modal) {
-            $scope.modal = modal;
-        });
-
-        // Triggered in the login modal to close it
-        $scope.closeLogin = function () {
-            $scope.modal.hide();
-        };
-
-        // Open the login modal
-        $scope.login = function () {
-            $scope.modal.show();
-        };
-
-        $scope.user={
-            isAuthenticated : false,
-=======
 .controller('AppCtrl', function($scope, $ionicModal, $http, $timeout, $location) {
 
   var url = "http://128.199.54.243:3001/getall";
@@ -53,7 +27,6 @@ angular.module('starter.controllers', [])
 
   $scope.user={
             isAuthenticated : true, //false by default
->>>>>>> d82891dbf43f5132dbe9a026dfabf3352ede8426
             username : "",
             authenticate : function(){
                 if(this.isAuthenticated==false)
@@ -68,23 +41,6 @@ angular.module('starter.controllers', [])
             }
         };
 
-<<<<<<< HEAD
-        // Perform the login action when the user submits the login form
-        $scope.doLogin = function () {
-            console.log('Doing login', $scope.loginData);
-            $http.get("http://128.199.54.243:3000/auth?uname="+$scope.loginData.username+"&pwd="+$scope.loginData.password+"")
-                .success(function (response) {
-                    console.log(response);
-                    if(response ==1) {
-                        $scope.user.isAuthenticated = true;
-                        $scope.user.username = $scope.loginData.username;
-                        $scope.user.startApp();
-                    }
-                });
-        };
-
-        // Perform the signup action when the user submits the signup form
-=======
   // Perform the login action when the user submits the login form
   $scope.doLogin = function () {
             //console.log('Doing login', $scope.loginData);
@@ -100,17 +56,12 @@ angular.module('starter.controllers', [])
   };
 
   // Perform the signup action when the user submits the signup form
->>>>>>> d82891dbf43f5132dbe9a026dfabf3352ede8426
         $scope.doSignup = function () {
             console.log('Doing signup', $scope.signUpData);
 
             // Simulate a login delay. Remove this and replace with your login
             // code if using a login system
-<<<<<<< HEAD
-            $http.get("http://128.199.54.243:3000/register?fname="+$scope.signUpData.firstName+"&uname="+$scope.signUpData.username+"&lname="+$scope.signUpData.lastName+"&pwd="+$scope.signUpData.password+"")
-=======
             $http.get("http://128.199.54.243:3001/register?fname="+$scope.signUpData.firstName+"&uname="+$scope.signUpData.username+"&lname="+$scope.signUpData.lastName+"&pwd="+$scope.signUpData.password+"")
->>>>>>> d82891dbf43f5132dbe9a026dfabf3352ede8426
                 .success(function (response) {
                     console.log(response);
                     if(response==1){
@@ -122,20 +73,7 @@ angular.module('starter.controllers', [])
             }, 1000);
         };
 
-<<<<<<< HEAD
-        $scope.question = "Who is the president of Ghana?";
-
-        $scope.answers = [
-            {text: "John Mills", value: "a"},
-            {text: "Jerry John Rawlings", value: "b"},
-            {text: "John Kuffour", value: "c"},
-            {text: "John Mahama", value: "d"}
-        ];
-
-        $scope.subjects = [
-=======
     $scope.subjects = [
->>>>>>> d82891dbf43f5132dbe9a026dfabf3352ede8426
             //{subject: "Core Mathematics", id: 1},
             //{subject: "English Language", id: 2},
             {subject: "Social Studies", id: "Social Studies"}
@@ -144,11 +82,7 @@ angular.module('starter.controllers', [])
 
         $scope.currentTopics = {
             requestTopics: function () {
-<<<<<<< HEAD
-                $http.get("http://128.199.54.243:3000/listss")
-=======
                 $http.get("http://128.199.54.243:3001/listss")
->>>>>>> d82891dbf43f5132dbe9a026dfabf3352ede8426
                     .success(function (response) {
                         //this.topics = response;
                         $scope.currentTopics.topics = response;
@@ -183,23 +117,6 @@ angular.module('starter.controllers', [])
             }
         };
 
-<<<<<<< HEAD
-    })
-
-
-    .controller('PlaylistsCtrl', function ($scope) {
-        $scope.playlists = [
-            {title: 'Reggae', id: 1},
-            {title: 'Chill', id: 2},
-            {title: 'Dubstep', id: 3},
-            {title: 'Indie', id: 4},
-            {title: 'Rap', id: 5},
-            {title: 'Cowbell', id: 6}
-        ];
-    })
-
-    .controller('topics', function ($scope) {
-=======
    $scope.connect = function(meth, link){
       var request = $http({
                         method: meth,
@@ -255,7 +172,6 @@ angular.module('starter.controllers', [])
 })
 
 .controller('topics', function ($scope) {
->>>>>>> d82891dbf43f5132dbe9a026dfabf3352ede8426
         $scope.user.authenticate();
     })
 
@@ -308,8 +224,6 @@ angular.module('starter.controllers', [])
     })
 
 
-<<<<<<< HEAD
-=======
 .controller('QuestionCtrl', function($scope, $stateParams) {
   $scope.questions = [
       {_id:"546478ff8923185200139ca5",
@@ -416,7 +330,6 @@ angular.module('starter.controllers', [])
 
 
 
->>>>>>> d82891dbf43f5132dbe9a026dfabf3352ede8426
     .controller('home', function ($scope) {
         $scope.user.authenticate();
         //ask for subject
@@ -427,8 +340,4 @@ angular.module('starter.controllers', [])
     })
 
     .controller('PlaylistCtrl', function ($scope, $stateParams) {
-<<<<<<< HEAD
     });
-=======
-    });
->>>>>>> d82891dbf43f5132dbe9a026dfabf3352ede8426
