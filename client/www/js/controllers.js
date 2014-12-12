@@ -1,12 +1,46 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $http, $timeout, $location) {
+.controller('AppCtrl', function($scope, $ionicModal, $http, $timeout, $location, $q) {
 
   var url = "http://128.199.54.243:3001/getall";
 
   // Form data for the login modal
   $scope.loginData = {};
   $scope.signUpData = {};
+
+  $scope.setQuestions = function(res){
+        $scope.questions = res;
+        console.log("Serialized: "+ $scope.questions);
+      };
+
+  $scope.getFiveQ = function(topic){
+        var defer = $q.defer();
+        $scope.allQues = {};
+        $http.get('http://128.199.54.243:3001/getfive?topic='+topic)
+          .success(function(res){
+            $scope.setQuestions(res);
+            console.log("Scope: " + $scope.questions[0].id);
+            defer.resolve(res);
+          })
+          .error(function(err,status){
+            defer.reject(err);
+          })
+          console.log("Promises: "+defer.promise);
+          return defer.promise;
+      };
+
+      $scope.fiveQ = function(topic){
+        $scope.getFiveQ(topic)
+          .then(function(res){
+            //success
+            console.log("Online connection successful");
+          }, function(err){
+            //error
+            console.log("Internet not working");
+          });
+
+        };
+       
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -99,6 +133,16 @@ angular.module('starter.controllers', [])
             testTypeUrl: "",
             setTopic: function (newTopic) {
                 this.topic = newTopic;
+                console.log("Topic Code: "+newTopic);
+                $scope.getFiveQ(this.topic)
+                .then(function(res){
+                  //success
+                  $location.path("/app/question");
+                }, function(err){
+                  //error
+                });
+                
+
             },
             setSubject: function (newSubject, e) {
                 this.subject = newSubject;
@@ -136,33 +180,6 @@ angular.module('starter.controllers', [])
   $scope.check = function(){
 
   }
-
-})
-
-.controller('ProgressCtrl', function($scope) {
-  $scope.progress = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-})
-
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-})
-
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-
 
 })
 
@@ -224,104 +241,72 @@ angular.module('starter.controllers', [])
     })
 
 
-.controller('QuestionCtrl', function($scope, $stateParams) {
-  $scope.questions = [
-      {_id:"546478ff8923185200139ca5",
-        session:"J",
-        subject:"Social Studies",
-        topic:"A",
-        question:"Who is the president of Ghana? ",
-        ans_a:"John Mills",
-        ans_b:"John Mahama",
-        ans_c:"John Kuffour",
-        ans_d:"John Rawlings",
-        ans_e:"",
-        answer:4,
-        year:[]
-      },
-
-      {_id:"c33328ff892318520013946c",
-        session:"J",
-        subject:"Social Studies",
-        topic:"A",
-        question:"Population census in Ghana is conducted under the auspices of the ",
-        ans_a:"Ministry of Economic Planning",
-        ans_b:"Ministry of Information",
-        ans_c:"Statistical Service",
-        ans_d:"Electoral Commission",
-        ans_e:"",
-        answer:4,
-        year:[]
-      },
-
-      {_id:"a46478ff8923185200139ca1",
-        session:"J",
-        subject:"Social Studies",
-        topic:"A",
-        question:"Which ministry is responsible for the population census ",
-        ans_a:"Ministry of Economic Planning",
-        ans_b:"Ministry of Information",
-        ans_c:"Statistical Service",
-        ans_d:"Electoral Commission",
-        ans_e:"",
-        answer:4,
-        year:[]
-      }];
+.controller('QuestionCtrl', function($scope, $stateParams, $q, $http, $location) {
 
       $scope.size = 0;
-      for ( property in $scope.questions)   
+      for (property in $scope.questions)   
       {
           if($scope.questions.hasOwnProperty(property))
           {
               $scope.size++;
           }
       }
-
-      $scope.status=true;
-      $scope.ans = {selected:false};
-      $scope.state = function(status) {
-        if($scope.ans.selected===false)
-          return true;
-        else
-          return false;
-      };
-      
-      
-      $scope.chosen =function(val){
-        if(val){
-          $scope.ans.value=val;   
-           $scope.state();
+        $scope.isDisabled = false;
+        
+        $scope.setDisabled = function(){
+          $scope.isDisabled = true;
         }
 
-      };
-      $scope.count = 0;
-      $scope.activeQ = $scope.questions[0];
+        $scope.showAns = function(){
+          return $scope.isDisabled;
+        };
 
-      $scope.nextQ = function(){
-        $scope.ans = {selected:false};
-        // Grade current question
-        if($scope.ans.value===$scope.activeQ.answer){
-          console.log("Correct!"+$scope.ans.value);
+        $scope.loadNew = function(topic){
+          $scope.getFiveQ(topic)
+          .then(function(res){
+                  //success
+                  //$route.reload();
+                  $location.path('/app/topics');
+                }, function(err){
+                  //error
+                });
+        }
+
+        $scope.isHidden = true;
+
+        $scope.viewResults = function(){
+          $scope.isDisabled = true;
+          $scope.isHidden = false;
+          console.log($scope.correctQ);
+          
+        }
+
+        $scope.ansCount = 1;
+
+        //console.log($scope.questions[0].choices[0]);
+          
+      $scope.condition = function(){return $scope.isHidden};
+      
+      $scope.numCorrect = 0;
+      $scope.correctQ = {qid:""};
+
+
+      $scope.checkAns = function(qid, choice, answer){
+        if(choice===parseInt(answer)){
+          console.log("Correct!" + choice);
+          $scope.numCorrect++;
+          $scope.color = 'balanced';
+          //if ( !( 'qid' in $scope.correctQ ) ) {
+              $scope.correctQ['qid'] = qid;
+          //}   
+          //$scope.correctQ.push(qid);
         }
         else{
-          console.log("Wrong"+$scope.ans.value);
+          console.log("Wrong" + choice);
+          $scope.color = 'assertive';
         }
-        
-        // Move to next question
-        if($scope.count<$scope.size-1)
-          $scope.count++;
 
-        return $scope.questions[$scope.count];
-      };
-      $scope.prevQ = function(){
-        if($scope.count>0)
-          $scope.count--;
-        return $scope.questions[$scope.count];
-      };
-
-
-
-
+      }
 })
 
 .controller('ResultsCtrl', function($scope) {
@@ -338,6 +323,3 @@ angular.module('starter.controllers', [])
         //but start button to start timer
         //show question
     })
-
-    .controller('PlaylistCtrl', function ($scope, $stateParams) {
-    });

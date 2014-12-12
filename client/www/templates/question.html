@@ -1,36 +1,32 @@
-<ion-view title="Social Studies">
-  <ion-nav-buttons side="left">
-    <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
-  </ion-nav-buttons>
-
-  <ion-content class="has-header">
-	<div class="list card">
+<ion-view title="Practice ">
+	<ion-content class="has-header">
+  <ion-slide-box on-slide-changed="slideHasChanged($index)">
+  	<ion-slide ng-repeat="q in questions track by $index">
+    <div class="list card">
  	 <div class="item-header item-text-wrap">
-	    <h4>{{activeQ.question}}</h4>
- 	 </div>
- 	 
-			<ion-radio ng-model="ans.selected" ng-click="chosen(1)" name="{{activeQ._id}}" value="1" class="item-text-wrap">A. {{activeQ.ans_a}}</ion-radio>
-			<ion-radio ng-model="ans.selected" ng-click="chosen(2)" name="{{activeQ._id}}" value="2" class="item-text-wrap">B. {{activeQ.ans_b}}</ion-radio>
-			<ion-radio ng-model="ans.selected" ng-click="chosen(3)" name="{{activeQ._id}}" value="3" class="item-text-wrap">C. {{activeQ.ans_c}}</ion-radio>
-			<ion-radio ng-model="ans.selected" ng-click="chosen(4)" name="{{activeQ._id}}" value="4" class="item-text-wrap">D. {{activeQ.ans_d}}</ion-radio>
-			<tt>selected: {{ans.value}}</tt>
-			<tt>Correct: {{activeQ.answer}} </tt>
+	    <h4>{{q.question}}</h4>
+ 	 	</div>
+ 	 		
+			<ion-radio ng-model="ansChoice" ng-click="checkAns(q.id, $index+1, q.answer)" value="{{$index+1}}" name="{{q.id}}" ng-repeat="choice in q.choices" class="item-text-wrap" ng-disabled="showAns()"  >{{choice}}</ion-radio>		
+ 
+			<!-- <tt>Question:{{$index+1}}</tt>
+			<tt><div id="{{q._id}}" ng-show="!condition()">Wrong! Ans: {{q.choices[q.answer-1]}}</div><div id="{{q._id}}" ng-show="condition()">That is correct</div> </tt> -->
+			
  </div>
-
-  </ion-content>
-
-  <ion-footer-bar align-title="left" class="bar-positive tabs tabs-icon-left">
-  <a class="tab-item" ng-click="activeQ=prevQ()">
-    <i class="icon ion-ios7-arrow-back"></i>
-    
-  </a>
-  <a class="tab-item">
-    <i class="icon"></i>
-    <strong>{{count+1}}/{{size}}</strong>
-  </a>
-  <a class="tab-item" ng-click="activeQ=nextQ()" ng-disabled="state()">
-    <i class="icon ion-ios7-arrow-forward"></i>
-    
-  </a>
-</ion-footer-bar>
+  </ion-slide>
+  <ion-slide>
+	<div ng-hide="condition()">
+  	<h2>Score Card</h2>
+	<h3>Your Score: {{numCorrect}}</h3>
+  	<div ng-repeat="r in questions track by $index">
+  		Question {{$index+1}}: {{r.question}}
+  		<br>
+  		Answer: <span class="balanced">{{r.choices[r.answer-1]}}</span>
+  	</div>
+  	</div>
+    <div ng-click="viewResults()" class="button button-assertive button-full" ng-show="isHidden">View Results</div>
+    <div ng-click="loadNew(questions[0].topic)" class="button button-balanced button-full" ng-hide="isHidden">Next Batch</div>
+  </ion-slide>
+		</ion-slide-box>
+	</ion-content>
 </ion-view>

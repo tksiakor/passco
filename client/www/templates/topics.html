@@ -5,16 +5,11 @@
     <ion-content class="has-header">
         <!--<h1>Topics</h1>-->
         <ul class="list">
-            <a class="item item-icon-right" href="#/app/test" ng-repeat="topic in currentTopics.topics" ng-click="selectedItems.setTopic(topic.code)">
+            <a class="item item-icon-right" ng-repeat="topic in currentTopics.topics" ng-click="selectedItems.setTopic(topic.code)">
                 {{topic.name}}
                 <i class="icon ion-ios7-arrow-right"></i>
 
             </a>
         </ul>
-
     </ion-content>
-<<<<<<< HEAD
 </ion-view>
-=======
-</ion-view>
->>>>>>> d82891dbf43f5132dbe9a026dfabf3352ede8426
