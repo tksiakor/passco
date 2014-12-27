@@ -2,13 +2,15 @@
     <ion-nav-buttons side="left">
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
-    <ion-content class="has-header">
+    <ion-content class="has-header topics">
         <!--<h1>Topics</h1>-->
         <ul class="list">
-            <a class="item item-icon-right" ng-repeat="topic in currentTopics.topics" ng-click="selectedItems.setTopic(topic.code)">
+            <a class="item item-icon-right topic" ng-repeat="topic in currentTopics.topics" ng-click="selectedItems.setTopic(topic.code)">
                 {{topic.name}}
                 <i class="icon ion-ios7-arrow-right"></i>
-
+                <span class="item-note">
+                  <meter min="0" max="100" low="60" high="100" optimum="80" value="70"></meter>
+                </span>
             </a>
         </ul>
     </ion-content>

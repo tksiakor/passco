@@ -1,5 +1,5 @@
 .box {
-    background-color: dodgerblue;
+    background-color: #5677fc;
     height: 100px;
     text-align: center;
     font-size: 25px;
@@ -19,8 +19,9 @@ meter {
     /*background: #EEE;*/
     box-shadow: 0 2px 3px rgba(0,0,0,0.2) inset;
     /*border-radius: 3px;*/
-    height: 25px;
+    height: 10px;
     width: 95%;
+    transition: width 1.5s;
 }
 
 meter::-webkit-meter-bar {
@@ -30,8 +31,9 @@ meter::-webkit-meter-bar {
 }
 
 meter::-webkit-meter-optimum-value {
-    background: #5acc0d; /* Green */
+    background: #5acc0d;  /*Green */
     border-radius: 3px;
+    
 }
 
 meter::-webkit-meter-suboptimum-value {
@@ -52,4 +54,126 @@ meter::-webkit-meter-even-less-good-value {
 .checkedClass {
     background-color:#3ab44a;
     color:white;
+}
+
+.question-slider{
+    background: #03a9f4;
+}
+
+.choices input:checked ~ .item-content {
+background: #03a9f4;
+color:#fff;
+}
+
+.button.button-assertive {
+border-color: #cc2311;
+background-color: #e51c23;
+color: #fff;
+}
+
+.balanced, a.balanced {
+color: #00bcd4;
+}
+
+.bar.bar-positive {
+border-color: #145fd7;
+background-color: #3f51b5;
+background-image: linear-gradient(0deg, #145fd7, #145fd7 50%, transparent 50%);
+color: #fff;
+}
+
+.item-note {
+    float:none;
+    color: #aaa;
+    font-size: 14px;
+    display: block;
+    width: 95%;
+}
+
+.topic {
+    border-color: #03a9f4;
+    background-color: #fff;
+    color: #444;
+    position: relative;
+    z-index: 2;
+    display: block;
+    margin: 10px;
+    padding: 16px;
+    border-width: 1px;
+    border-style: solid;
+    font-size: 16px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.topics {
+    background:#03a9f4;
+}
+
+.results-slider .result-header{
+    background: #5677fc;
+}
+
+.results-slider .result-header h2{
+    color: #fff;
+}
+
+.correct-answers {
+    background: #03a9f4;
+}
+
+.correct-answers .correct-question{
+    background:#fff;
+    color:#5677fc;
+}
+.correct-answers .correct-answer{
+    background:#fff;
+    color:#5677fc;
+}
+
+.correct-answers .correct-answer strong {
+    background:#fff;
+    color: #3f51b5;
+}
+
+.topics .item-image{
+    width:80%;
+    margin: 0 auto;   
+    border:none;
+}
+
+.topics .results-header{
+    background: #5677fc;
+}
+
+.topics .results-header h3{
+    color: #fff;
+}
+
+./*title-menu {
+    margin-left: 20px;
+    display: block;
+}*/
+
+.home {
+    border-color: #03a9f4;
+    background-color: #fff;
+    color: #444;
+    position: relative;
+    z-index: 2;
+    display: block;
+    padding: 16px;
+    border-width: 1px;
+    border-style: solid;
+    font-size: 16px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.home {
+    padding: 20px;
+    text-align: center;
+}
+.home a, a:active, a:visited{
+    color:#145fd7;
+    font-size: 18px;
+    font-weight: bold;
 }

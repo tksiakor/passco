@@ -11,7 +11,7 @@ angular.module('starter.controllers', [])
   $scope.setQuestions = function(res){
         $scope.questions = res;
         console.log("Serialized: "+ $scope.questions);
-      };
+  };
 
   $scope.getFiveQ = function(topic){
         var defer = $q.defer();

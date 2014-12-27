@@ -1,0 +1,40 @@
+[
+  {
+    "subject": "Core Maths",
+    "subjectCode": "m01",
+    "topics": []
+  },
+  {
+    "subject": "Elective Maths",
+    "subjectCode": "m02",
+    "topics": []
+  },
+  {
+    "subject": "Social Studies",
+    "subjectCode": "s01",
+    "topics": [
+      {
+        "topic": "The Environment",
+        "topicCode": "s01-a"
+      },
+      {
+        "topic": "Culture",
+        "topicCode": "s01-b"
+      },
+      {
+        "topic": "Government",
+        "topicCode": "s01-c"
+      }
+    ]
+  },
+  {
+    "subject": "Integrated Science",
+    "subjectCode": "s02",
+    "topics": []
+  },
+  {
+    "subject": "Agriculture",
+    "subjectCode": "a01",
+    "topics": []
+  }
+]
