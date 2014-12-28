@@ -6,10 +6,10 @@
         <!--<h1>Subjects</h1>-->
 
         <div ng-init="index=0">
-            <div ng-repeat="subject in subjects">
+            <div ng-repeat="subject in subjectTopics">
                 <div class="row responsive-sm">
-                    <a href="#/app/testType">
-                        <div class="col" ng-click="selectedItems.setSubject(subject.id,$event)">
+                    <a href="#/app/topics">
+                        <div class="col" ng-click="selectedItems.setSubject(subject.subjectCode,$index)">
                             <div class="box">{{subject.subject}}</div>
                         </div>
                     </a>

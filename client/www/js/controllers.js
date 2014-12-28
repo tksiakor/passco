@@ -7,6 +7,79 @@ angular.module('starter.controllers', [])
   // Form data for the login modal
   $scope.loginData = {};
   $scope.signUpData = {};
+  
+  $scope.store = {
+            save: function (key, data) {
+                localStorage.setItem(key, data);
+            },
+            retrieve: function (key) {
+                return localStorage.getItem(key);
+            }
+        };
+
+        $scope.subjectTopics = {};
+
+        $http.get("js/topics.json")
+            .success(function (res) {
+                //$scope.subjectTopics = JSON.parse(res);
+                $scope.subjectTopics = res;
+                $scope.subjects = res;
+                console.log($scope.subjectTopics);
+            });
+
+        console.log($scope.subjectTopics);
+
+        $scope.local = {
+            levelCount: 35,
+            setFirstTime: function () {
+                if ($scope.store.retrieve("isFirstTime") === null) {
+                    $scope.store.save("isFirstTime", "0");
+                    $scope.store.save("knowsHowToSwipe", "0");
+                    $scope.store.save("subjects", "");
+                    $scope.store.save("level", "0");
+                    $scope.store.save("counter", "0");
+                }
+                else {
+                    $scope.store.save("isFirstTime", "1");
+                }
+            },
+            getFirstTime: function () {
+                return $scope.store.retrieve("isFirstTime");
+            },
+            setKnowsHowToSwipe: function () {
+                $scope.store.save("knowsHowToSwipe", "1");
+            },
+            getKnowsHowToSwipe: function () {
+                return $scope.store.retrieve("knowsHowToSwipe");
+            },
+            addCount: function (val) {
+                var count = parseInt($scope.store.retrieve("counter"));
+                console.log(count + " <-count");
+                count += val;
+                console.log(count + "count+ val");
+                console.log(count);
+                if (count >= this.levelCount) {
+                    var numLevels = parseInt(count / this.levelCount);
+                    console.log(numLevels);
+                    count = count % this.levelCount;
+                    this.moveUpLevel(numLevels);
+                    $scope.store.save('counter', count);
+                    return 1; //meaning the user has gone pass another level
+                }
+                else {
+                    $scope.store.save('counter', count);
+                    return 0;
+                }
+            },
+            moveUpLevel: function (numLevels) {
+                $scope.store.save("level", parseInt($scope.store.retrieve('level')) + numLevels);
+            },
+            getLevel: function () {
+                return $scope.store.retrieve("level");
+            }
+        };
+
+        $scope.local.setFirstTime();
 
   $scope.setQuestions = function(res){
         $scope.questions = res;
@@ -107,12 +180,13 @@ angular.module('starter.controllers', [])
             }, 1000);
         };
 
-    $scope.subjects = [
-            //{subject: "Core Mathematics", id: 1},
-            //{subject: "English Language", id: 2},
-            {subject: "Social Studies", id: "Social Studies"}
-            //{subject: "Integrated Science", id: 4}
-        ];
+
+    // $scope.subjects = [
+    //         //{subject: "Core Mathematics", id: 1},
+    //         //{subject: "English Language", id: 2},
+    //         {subject: "Social Studies", id: "Social Studies"}
+    //         //{subject: "Integrated Science", id: 4}
+    //     ];
 
         $scope.currentTopics = {
             requestTopics: function () {
@@ -131,6 +205,7 @@ angular.module('starter.controllers', [])
             subject: "",
             testType: "",
             testTypeUrl: "",
+            index: "",
             setTopic: function (newTopic) {
                 this.topic = newTopic;
                 console.log("Topic Code: "+newTopic);
@@ -141,11 +216,10 @@ angular.module('starter.controllers', [])
                 }, function(err){
                   //error
                 });
-                
-
             },
-            setSubject: function (newSubject, e) {
+            setSubject: function (newSubject, index) {
                 this.subject = newSubject;
+                this.index = index;
                 $scope.currentTopics.requestTopics();
                 //console.log($scope.currentTopics.topics);
             },
