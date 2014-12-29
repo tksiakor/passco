@@ -1,0 +1,42 @@
+<ion-view title="Topics">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+        <form ng-submit="doSignup()" name="signUpForm">
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">First Name</span>
+                    <input type="text" ng-model="signUpData.firstName" ng-minlength="1" required>
+                </label>
+                <p ng-show="signUpForm.signUpData.firstName.$invalid && !signUpForm.signUpData.firstName.$pristine" class="alert-danger">First name is required.</p>
+
+                <label class="item item-input">
+                    <span class="input-label">Last Name</span>
+                    <input type="text" ng-model="signUpData.lastName" ng-minlength="1" required>
+                </label>
+                <p ng-show="signUpForm.signUpData.lastName.$invalid && !signUpForm.signUpData.lastName.$pristine" class="alert-danger">Last name is required.</p>
+
+                <label class="item item-input">
+                    <span class="input-label">Username</span>
+                    <input type="text" ng-model="signUpData.username" ng-minlength="3" required>
+                </label>
+                <p ng-show="signUpForm.signUpData.username.$invalid && !signUpForm.signUpData.username.$pristine" class="alert-danger">Username is required.</p>
+
+                <label class="item item-input">
+                    <span class="input-label">Password</span>
+                    <input type="password" ng-model="signUpData.password" ng-minlength="7" required>
+                </label>
+                <p ng-show="signUpForm.signUpData.password.$invalid && !signUpForm.signUpData.password.$pristine" class="alert-danger">Password is required.</p>
+
+                <label class="item">
+                    <input class="button button-block button-positive" type="submit" value="SignUp" ng-disabled="signUpForm.$invalid">
+                </label>
+            </div>
+        </form>
+       </ion-content>
+<<<<<<< HEAD
+</ion-view>
+=======
+</ion-view>
+>>>>>>> d82891dbf43f5132dbe9a026dfabf3352ede8426

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>subject</key>
+		<string>Core Maths</string>
+		<key>subjectCode</key>
+		<string>m01</string>
+		<key>topics</key>
+		<array/>
+	</dict>
+	<dict>
+		<key>subject</key>
+		<string>Elective Maths</string>
+		<key>subjectCode</key>
+		<string>m02</string>
+		<key>topics</key>
+		<array/>
+	</dict>
+	<dict>
+		<key>subject</key>
+		<string>Social Studies</string>
+		<key>subjectCode</key>
+		<string>s01</string>
+		<key>topics</key>
+		<array>
+			<dict>
+				<key>topic</key>
+				<string>The Environment</string>
+				<key>topicCode</key>
+				<string>A</string>
+			</dict>
+			<dict>
+				<key>topic</key>
+				<string>Culture</string>
+				<key>topicCode</key>
+				<string>s01-b</string>
+			</dict>
+			<dict>
+				<key>topic</key>
+				<string>Government</string>
+				<key>topicCode</key>
+				<string>s01-c</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>subject</key>
+		<string>Integrated Science</string>
+		<key>subjectCode</key>
+		<string>s02</string>
+		<key>topics</key>
+		<array/>
+	</dict>
+	<dict>
+		<key>subject</key>
+		<string>Agriculture</string>
+		<key>subjectCode</key>
+		<string>a01</string>
+		<key>topics</key>
+		<array/>
+	</dict>
+</array>
+</plist>

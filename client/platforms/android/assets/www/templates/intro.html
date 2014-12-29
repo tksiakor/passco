@@ -1,0 +1,78 @@
+<ion-view title="">
+  <ion-nav-buttons side="left">
+    <button class="button button-positive button-clear no-animation"
+            ng-click="startApp()" ng-show="!slideIndex">
+      Skip Intro
+    </button>
+    <button class="button button-positive button-clear no-animation"
+            ng-click="previous()" ng-show="slideIndex > 0">
+      Previous
+    </button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right"> 
+    <button class="button button-positive button-clear no-animation"
+            ng-click="next()" ng-show="slideIndex != 3">
+      Next
+    </button>
+    <button class="button button-positive button-clear no-animation"
+            ng-click="startApp()" ng-show="slideIndex == 3">
+      Start using 2B
+    </button>
+  </ion-nav-buttons>
+  <ion-slide-box on-slide-changed="slideChanged(index)" show-pager="false" class="padding-horizontal intro-slider">
+    <ion-slide class="intro-slide">
+      <h3>Thank you for choosing the 2B Exam Prep App!</h3>
+      <div id="logo">
+        <!-- <img src="http://code.ionicframework.com/assets/img/app_icon.png"> -->
+      </div>
+      <p>
+        We've worked super hard to make you happy.
+      </p>
+      <p>
+        Using this app is as simple as ABC
+      </p>
+      <button class="button button-block button-assertive" ng-click="next()">
+        A. Get Started
+      </button>
+    </ion-slide>
+    <ion-slide class="intro-slide">
+      <h3>A. Getting Started</h3>
+      
+      <div id="list">
+        <h5>Just three steps:</h5>
+        <ol>
+          <li>Register</li>
+          <li>Login</li>
+          <li>There is no step 3</li>
+        </ol>
+      </div>
+      <button class="button button-block button-assertive" ng-click="next()">
+        B. Using 2B
+      </button>
+    </ion-slide>
+    <ion-slide class="intro-slide">
+      <h3>B. Using 2B</h3>
+      
+      <div id="list">
+        <h4>To get the most,</h4>
+        <ol>
+          <li>Get Practice</li>
+          <li>Take tests</li>
+          <li>View tips</li>
+        </ol>
+      </div>
+      <button class="button button-block button-assertive" ng-click="next()">
+        C. Start Now!
+      </button>
+    </ion-slide>
+    <ion-slide class="intro-slide">
+      <h3>C. There is no C</h3>
+      <p>
+        That's all. Sorry to disappoint
+      </p>
+      <button class="button button-large button-assertive" ng-click="startApp()">
+        Register Now
+      </button>
+    </ion-slide>
+  </ion-slide-box>
+</ion-view>
