@@ -40,15 +40,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngRoute'])
       }
     })
 
-    .state('app.search', {
-      url: "/search",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/search.html"
-        }
-      }
-    })
-
     .state('app.question', {
       url: "/question",
       views: {
@@ -59,22 +50,31 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngRoute'])
       }
     })
 
-    .state('app.tips', {
-      url: "/tips",
+    .state('app.testQuestions', {
+      url: "/testQuestions",
       views: {
         'menuContent' :{
-          templateUrl: "templates/tips.html",
-          controller: 'TipsCtrl'
+          templateUrl: "templates/testQuestions.html",
+          controller: "QuestionCtrl"
         }
       }
     })
 
-    .state('app.one', {
-      url: "/questions/:questionId",
+    .state('app.yearQuestions', {
+      url: "/yearQuestions",
       views: {
         'menuContent' :{
-          templateUrl: "templates/question.html",
-          controller: 'QuestionCtrl'
+          templateUrl: "templates/yearQuestions.html",
+          controller: "QuestionCtrl"
+        }
+      }
+    })
+
+    .state('app.tips', {
+      url: "/tips",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/tips.html"
         }
       }
     })
@@ -87,13 +87,46 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngRoute'])
                     }
                 }
             })
+            .state('app.testSubjects', {
+                url: "/testSubjects",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/testSubjects.html"
+                    }
+                }
+            })
 
+            .state('app.yearSubjects', {
+                url: "/yearSubjects",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/yearSubjects.html"
+                    }
+                }
+            })
             .state('app.topics', {
                 url: "/topics",
                 views: {
                     'menuContent': {
-                        templateUrl: "templates/topics.html",
-                        controller: 'topics'
+                        templateUrl: "templates/topics.html"
+                    }
+                }
+            })
+
+            .state('app.testTopics', {
+                url: "/testTopics",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/testTopics.html"
+                    }
+                }
+            })
+
+            .state('app.yearTopics', {
+                url: "/yearTopics",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/yearTopics.html"
                     }
                 }
             })
@@ -102,8 +135,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngRoute'])
                 url: "/home",
                 views: {
                     'menuContent': {
-                        templateUrl: "templates/home.html",
-                        controller: 'home'
+                        templateUrl: "templates/home.html"
                     }
                 }
             })
@@ -191,16 +223,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngRoute'])
                 }
             })
 
-            .state('app.single', {
-                url: "/tips/:tipId",
-                views: {
-                    'menuContent': {
-                        templateUrl: "templates/tip.html",
-                        controller: 'TipCtrl'
-                    }
-                }
-            })
-
             .state('app.profile', {
                 url: "/profile",
                 views: {
@@ -208,7 +230,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngRoute'])
                         templateUrl: "templates/profile.html"
                     }
                 }
+            })
+
+            .state('app.profileTopic', {
+                url: "/profileTopic",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/profileTopic.html"
+                    }
+                }
             });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/login');
+  $urlRouterProvider.otherwise('/app/home');
 });

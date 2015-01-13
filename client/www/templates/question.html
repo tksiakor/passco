@@ -1,4 +1,4 @@
-<ion-view title="Practice ">
+<ion-view title="Practice">
 	<ion-content class="has-header question-slider">
   <ion-slide-box on-slide-changed="slideHasChanged($index)" show-pager="false">
   	<ion-slide ng-repeat="q in questions track by $index" class="question-slider">
@@ -29,7 +29,7 @@
   	</div>
   	</div>
     <div ng-click="viewResults()" class="button button-assertive button-full" ng-show="isHidden">View Results</div>
-    <div ng-click="loadNew(questions[0].topic)" class="button button-assertive button-block padding-horizontal" ng-hide="isHidden">Next Batch</div>
+    <div ng-click="loadNew(questions[0].topic)" class="button button-assertive button-block padding-horizontal" ng-hide="isHidden">Back to Topics</div>
   </ion-slide>
 		</ion-slide-box>
 	</ion-content>

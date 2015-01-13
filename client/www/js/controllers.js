@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $http, $timeout, $location, $q, $ionicLoading, $state) {
+.controller('AppCtrl', function($scope, $ionicModal, $http, $timeout, $location, $q, $ionicLoading, $ionicPopup, $state) {
 
   $scope.toIntro = function(){
     $state.go('intro');
@@ -13,6 +13,13 @@ angular.module('starter.controllers', [])
   $scope.signUpData = {};
   
   $scope.store = {
+            addJSON: function (key, data) {
+                var jsonToStore = JSON.stringify(data);
+                localStorage.setItem(key, jsonToStore);
+            },
+            getJSON: function (key) {
+                return JSON.parse(localStorage.getItem(key));
+            },
             save: function (key, data) {
                 localStorage.setItem(key, data);
             },
@@ -21,16 +28,25 @@ angular.module('starter.controllers', [])
             }
         };
 
+        
         $scope.subjectTopics = {};
 
         $http.get("js/topics.json")
             .success(function (res) {
                 //$scope.subjectTopics = JSON.parse(res);
-                $scope.subjectTopics = res;
-                $scope.subjects = res;
+                //$scope.subjectTopics = res;
+                //$scope.subjects = res;
+                $scope.store.addJSON('subjects', res);
+                $scope.subjects = $scope.store.getJSON('subjects');
+                $scope.subjectTopics = $scope.store.getJSON('subjects');
                 console.log($scope.subjectTopics);
+                
             });
 
+        $scope.numTopics = function(index){
+            return Object.keys($scope.subjectTopics[index].topics).length;
+            console.log("Number of Topics: "+ $scope.numTopics);
+        }
         console.log($scope.subjectTopics);
 
         $scope.local = {
@@ -42,9 +58,12 @@ angular.module('starter.controllers', [])
                     $scope.store.save("subjects", "");
                     $scope.store.save("level", "0");
                     $scope.store.save("counter", "0");
+                    $scope.store.save("myScore", 0);
+                    $scope.userScore = parseInt($scope.store.retrieve('myScore'));
                 }
                 else {
                     $scope.store.save("isFirstTime", "1");
+                    $scope.userScore = parseInt($scope.store.retrieve('myScore'));
                 }
             },
             getFirstTime: function () {
@@ -93,10 +112,32 @@ angular.module('starter.controllers', [])
   $scope.getFiveQ = function(topic, subject){
         $ionicLoading.show({
                 template: 'Loading...'
-        })
+        });
         var defer = $q.defer();
         $scope.allQues = {};
         $http.get('http://128.199.54.243:3001/getfive?topic='+topic+'&subject='+subject)
+          .success(function(res){
+            $scope.setQuestions(res);
+            console.log("Scope: " + $scope.questions[0].id);
+            defer.resolve(res);
+            setTimeout(function() {$ionicLoading.hide();},500);
+            
+          })
+          .error(function(err,status){
+            defer.reject(err);
+            $ionicLoading.hide();
+          })
+          console.log("Promises: "+defer.promise);
+          return defer.promise;
+      };
+
+      $scope.getTopicQ = function(topic, subject){
+        $ionicLoading.show({
+                template: 'Loading...'
+        });
+        var defer = $q.defer();
+        $scope.allQues = {};
+        $http.get('http://128.199.54.243:3001/gettopic?topic='+topic+'&subject='+subject)
           .success(function(res){
             $scope.setQuestions(res);
             console.log("Scope: " + $scope.questions[0].id);
@@ -108,17 +149,45 @@ angular.module('starter.controllers', [])
             $ionicLoading.hide();
           })
           console.log("Promises: "+defer.promise);
+          $ionicLoading.hide();
+          return defer.promise;
+      };
+
+      $scope.getYearQ = function(){
+        $ionicLoading.show({
+                template: 'Loading...'
+        });
+        var defer = $q.defer();
+        $scope.allQues = {};
+        $http.get('http://128.199.54.243:3001/getall')
+          .success(function(res){
+            $scope.setQuestions(res);
+            console.log("Scope: " + $scope.questions[0].id);
+            defer.resolve(res);
+            $ionicLoading.hide();
+          })
+          .error(function(err,status){
+            defer.reject(err);
+            $ionicLoading.hide();
+          })
+          console.log("Promises: "+defer.promise);
+          $ionicLoading.hide();
           return defer.promise;
       };
 
       $scope.fiveQ = function(topic){
+        $ionicLoading.show({
+            template: "Loading..."
+          });
         $scope.getFiveQ(topic)
           .then(function(res){
             //success
             console.log("Online connection successful");
+            $ionicLoading.hide();
           }, function(err){
             //error
             console.log("Internet not working");
+            $ionicLoading.hide();
           });
 
         };
@@ -157,6 +226,92 @@ angular.module('starter.controllers', [])
             }
         };
 
+        $scope.showPopup= function (){ 
+            $scope.data ={} 
+                var myPopup = $ionicPopup.show({ 
+                    template:'<input type="tel" ng-model=data.phone>', 
+                    title:'Enter PhoneNumber', 
+                    subtitle:'A message would be sent to this number', 
+                    scope:$scope, 
+                    buttons:[ 
+                        {text:'Cancel'}, 
+                        { 
+                            text:'<b> Purchase</b>', 
+                            type:'button-positive', 
+                            onTap:function(e){ 
+                                if(!$scope.data.phone) { 
+                                    e.preventDefault(); 
+                                }else{ 
+                                    return $scope.data.phone; 
+                                } 
+                            } 
+                        }, 
+                    ] 
+                }); 
+            myPopup.then(function(res){ 
+                console.log('Tapped!',res); 
+            }); 
+            $timeout(function(){ 
+                myPopup.close(); 
+            },30000); 
+        };
+
+        $scope.userProfile = [
+            {
+                "subject":"Social Studies",
+                "max":100,
+                "val":72,
+                "code": "lls",
+                "topics":
+                    [{
+                        "name":"The Environment",
+                        "max" :100,
+                        "val":20
+                    },
+                        {
+                            "name":"Culture",
+                            "max" :100,
+                            "val":60
+                        },
+                        {
+                            "name":"Government",
+                            "max" :100,
+                            "val":95
+                        }
+                    ]
+
+            },
+            {
+                "subject":"Core Maths",
+                "max":100,
+                "val":72,
+                "code": "lls",
+                "topics":
+                    [
+                    ]
+
+            },
+            {
+                "subject":"English",
+                "max":100,
+                "val":72,
+                "code": "lls",
+                "topics":
+                    [
+                    ]
+
+            }
+
+        ];
+
+        $scope.selectedProfileTopic={
+            setTopic : function(topicObject){
+                console.table(topicObject);
+                console.log(topicObject);
+                this.topic = topicObject;
+            },
+            topic :{}
+        };
   // Perform the login action when the user submits the login form
   $scope.doLogin = function () {
             //console.log('Doing login', $scope.loginData);
@@ -230,11 +385,13 @@ angular.module('starter.controllers', [])
                         $ionicLoading.hide();
                     });
             },
-            topics: ""
+            topics: "",
+            subjects: ""
         };
 
         $scope.selectedItems = {
             topic: "",
+            subjectTitle: "",
             subject: "",
             testType: "",
             testTypeUrl: "",
@@ -245,7 +402,19 @@ angular.module('starter.controllers', [])
                 $scope.getFiveQ(this.topic, this.subject)
                 .then(function(res){
                   //success
+                  //setTimeout(function() {$location.path("/app/question");},500);
                   $location.path("/app/question");
+                }, function(err){
+                  //error
+                });
+            },
+            setTopicTest: function (newTopic) {
+                this.topic = newTopic;
+                console.log("Topic Code: "+newTopic);
+                $scope.getTopicQ(this.topic, this.subject)
+                .then(function(res){
+                  //success
+                  $location.path("/app/testQuestions");
                 }, function(err){
                   //error
                 });
@@ -257,12 +426,34 @@ angular.module('starter.controllers', [])
                 //$scope.currentTopics.requestTopics();
                 console.log("Subject Code: "+$scope.subjects[index].topics);
             },
+            setSubjectYear: function (newSubject, index) {
+                this.subject = newSubject;
+                this.index = index;
+                
+                $scope.getYearQ()
+                .then(function(res){
+                  //success
+                  $location.path("/app/yearQuestions");
+                }, function(err){
+                  //error
+                });
+                $scope.currentTopics.topics = $scope.subjects[index].topics;
+                //$scope.currentTopics.requestTopics();
+                console.log("Subject Code: "+$scope.subjects[index].topics);
+            },
+            setSubjectTitle: function (newSubject, index) {
+                this.subject = newSubject;
+                this.index = index;
+                $scope.currentTopics.topics = $scope.subjects[index].topics;
+                //$scope.currentTopics.requestTopics();
+                console.log("Subject Code: "+$scope.subjects[index].topics);
+            },
             setTestType: function (newType, e) {
                 this.testType = newType;
                 if (newType == 1)
-                    this.setTestTypeUrl("#/app/topics");
+                    this.setTestTypeUrl("#/app/testSubjects");
                 else
-                    this.setTestTypeUrl("#/app/years");
+                    this.setTestTypeUrl("#/app/yearSubjects");
             },
             setTestTypeUrl: function (url) {
                 this.testTypeUrl = url;
@@ -291,7 +482,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('IntroCtrl', function($scope, $state, $ionicSlideBoxDelegate) {
+.controller('IntroCtrl', function($scope, $state,$ionicLoading, $ionicSlideBoxDelegate) {
  
   // Called to navigate to the main app
   $scope.startApp = function() {
@@ -316,7 +507,7 @@ angular.module('starter.controllers', [])
   
 })
 
-.controller('topics', function ($scope) {
+.controller('topics', function ($scope, $ionicLoading) {
         $scope.user.authenticate();
     })
 
@@ -369,7 +560,7 @@ angular.module('starter.controllers', [])
     })
 
 
-.controller('QuestionCtrl', function($scope, $stateParams, $q, $http, $location, $ionicLoading) {
+.controller('QuestionCtrl', function($scope,$ionicLoading, $stateParams, $q, $http, $location, $ionicLoading) {
 
       $scope.size = 0;
       for (property in $scope.questions)   
@@ -413,7 +604,8 @@ angular.module('starter.controllers', [])
           $scope.isDisabled = true;
           $scope.isHidden = false;
           console.log($scope.correctQ);
-          
+          var newScore = parseInt($scope.store.retrieve("myScore")) + $scope.numCorrect;
+          $scope.store.save('myScore', newScore);
         }
 
         $scope.ansCount = 1;

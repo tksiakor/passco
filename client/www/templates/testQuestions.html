@@ -1,0 +1,25 @@
+<ion-view title="Test Center">
+	<ion-content class="has-header question-slider">
+    <div ng-repeat="q in questions track by $index" class="list card">
+     	<div class="item-header item-text-wrap padding-horizontal">
+    	   <h4>{{$index+1}}. {{q.question}}</h4>
+     	</div>
+ 	 		<ion-radio ng-model="ansChoice" ng-click="checkAns(q.id, $index+1, q.answer)" value="{{$index+1}}" name="{{q.id}}" ng-repeat="choice in q.choices" class="item-text-wrap choices" ng-disabled="showAns()">{{choice}}</ion-radio>			
+ </div>
+  
+	<div ng-hide="condition()">
+    <div class="result-header padding">
+	<h2>Your Score: {{numCorrect}}</h2>
+  </div>
+  	<div ng-repeat="r in questions track by $index" class="correct-answers padding">
+  		<div class="correct-question padding">
+      Question {{$index+1}}: {{r.question}}
+  		</div>
+      <div class="correct-answer padding">
+  		Correct: <strong>{{r.choices[r.answer-1]}}</strong>
+      </div>
+  	</div>
+  	</div>
+    <div ng-click="viewResults()" class="button button-assertive button-full" ng-show="isHidden">View Results</div>
+	</ion-content>
+</ion-view>

@@ -1,98 +1,473 @@
 [
-  {
-    "subject": "Core Maths",
-    "subjectCode": "m01",
-    "topics": [
-      {
-        "topic": "Sets and Set Operations",
-        "topicCode": "A"
-      },
-      {
-        "topic": "Number and Numeration",
-        "topicCode": "B"
-      },
-      {
-        "topic": "Algebra",
-        "topicCode": "C"
-      },
-      {
-        "topic": "Plane Geometry",
-        "topicCode": "D"
-      },
-      {
-        "topic": "Mensuration",
-        "topicCode": "E"
-      },
-      {
-        "topic": "Trigonometry",
-        "topicCode": "F"
-      },
-      {
-        "topic": "Probability and Statistics",
-        "topicCode": "G"
-      },
-      {
-        "topic": "Vectors and Transformation",
-        "topicCode": "H"
-      },
-      {
-        "topic": "Sequences and Series",
-        "topicCode": "I"
-      }
-    ]
-  },
-  {
-    "subject": "Elective Maths",
-    "subjectCode": "m02",
-    "topics": []
-  },
-  {
-    "subject": "Social Studies",
-    "subjectCode": "s01",
-    "topics": [
-      {
-        "topic": "The Environment",
-        "topicCode": "A"
-      },
-      {
-        "topic": "Governance, Politics, and Stability",
-        "topicCode": "B"
-      },
-      {
-        "topic": "Social and Economic Development",
-        "topicCode": "C"
-      }
-    ]
-  },
-  {
-    "subject": "Integrated Science",
-    "subjectCode": "s02",
-    "topics": [
-      {
-        "topic": "Diversity of Matter",
-        "topicCode": "A"
-      },
-      {
-        "topic": "Cycles",
-        "topicCode": "B"
-      },
-      {
-        "topic": "Systems",
-        "topicCode": "C"
-      },
-      {
-        "topic": "Energy",
-        "topicCode": "D"
-      },
-      {
-        "topic": "Interactions of Matter",
-        "topicCode": "E"
-      }
-    ]
-  },
-  {
-    "subject": "Agriculture",
-    "subjectCode": "a01",
-    "topics": []
-  }
+    {
+        "subject": "Core Mathematics",
+        "subjectCode": "m01",
+        "topics": [
+            {
+                "topic": "Sets and Set Operations",
+                "topicCode": "A"
+            },
+            {
+                "topic": "Number and Numeration",
+                "topicCode": "B"
+            },
+            {
+                "topic": "Algebra",
+                "topicCode": "C"
+            },
+            {
+                "topic": "Plane Geometry",
+                "topicCode": "D"
+            },
+            {
+                "topic": "Mensuration",
+                "topicCode": "E"
+            },
+            {
+                "topic": "Trigonometry",
+                "topicCode": "F"
+            },
+            {
+                "topic": "Probability and Statistics",
+                "topicCode": "G"
+            },
+            {
+                "topic": "Vectors and Transformation",
+                "topicCode": "H"
+            },
+            {
+                "topic": "Sequences and Series",
+                "topicCode": "I"
+            }
+        ]
+    },
+    {
+        "subject": "Elective Maths",
+        "subjectCode": "m02",
+        "topics": []
+    },
+    {
+        "subject": "Social Studies",
+        "subjectCode": "s01",
+        "topics": [
+            {
+                "topic": "The Environment",
+                "topicCode": "A"
+            },
+            {
+                "topic": "Governance, Politics, and Stability",
+                "topicCode": "B"
+            },
+            {
+                "topic": "Social and Economic Development",
+                "topicCode": "C"
+            }
+        ]
+    },
+    {
+        "subject": "ICT",
+        "subjectCode": "t01",
+        "topics": []
+    },
+    {
+        "subject": "Integrated Science",
+        "subjectCode": "s02",
+        "topics": [
+            {
+                "topic": "Diversity of Matter",
+                "topicCode": "A"
+            },
+            {
+                "topic": "Cycles",
+                "topicCode": "B"
+            },
+            {
+                "topic": "Systems",
+                "topicCode": "C"
+            },
+            {
+                "topic": "Energy",
+                "topicCode": "D"
+            },
+            {
+                "topic": "Interactions of Matter",
+                "topicCode": "E"
+            }
+        ]
+    },
+    {
+        "subject": "General Agriculture",
+        "subjectCode": "a01",
+        "topics": []
+    },
+    {
+        "subject": "Biology",
+        "subjectCode": "b01",
+        "topics": [
+            {
+                "topic": "Cell Biology",
+                "topicCode": "A"
+            },
+            {
+                "topic": "The Life of Selected Insects",
+                "topicCode": "B"
+            },
+            {
+                "topic": "Interactions in Nature",
+                "topicCode": "C"
+            },
+            {
+                "topic": "Mammalian Anatomy and Physiology",
+                "topicCode": "D"
+            },
+            {
+                "topic": "Plant Structure and Physiology",
+                "topicCode": "E"
+            },
+            {
+                "topic": "Humans and their Environment",
+                "topicCode": "F"
+            },
+            {
+                "topic": "Genetics and Evolution",
+                "topicCode": "G"
+            },
+            {
+                "topic": "Biology and Industry",
+                "topicCode": "H"
+            }
+        ]
+    },
+    {
+        "subject": "Chemistry",
+        "subjectCode": "c01",
+        "topics": [
+            {
+                "topic": "Introduction to Chemistry",
+                "topicCode": "A"
+            },
+            {
+                "topic": "Structure of the Atom",
+                "topicCode": "B"
+            },
+            {
+                "topic": "Periodic Chemistry",
+                "topicCode": "C"
+            },
+            {
+                "topic": "Chemical Bonds",
+                "topicCode": "D"
+            },
+            {
+                "topic": "Stoichiometry and Chemical Reactions",
+                "topicCode": "E"
+            },
+            {
+                "topic": "States of Matter",
+                "topicCode": "F"
+            },
+            {
+                "topic": "Energy and Energy Changes",
+                "topicCode": "G"
+            },
+            {
+                "topic": "Acids, Bases and Salts",
+                "topicCode": "H"
+            },
+            {
+                "topic": "Solubility of Substances",
+                "topicCode": "I"
+            },
+            {
+                "topic": "Chemical Kinetics and Equilibrium Systems",
+                "topicCode": "J"
+            },
+            {
+                "topic": "Redox Reactions",
+                "topicCode": "K"
+            },
+            {
+                "topic": "Chemistry of Carbon Compounds",
+                "topicCode": "L"
+            },
+            {
+                "topic": "Chemistry, Industry and Environment",
+                "topicCode": "M"
+            },
+            {
+                "topic": "Basic Biochemistry and Synthetic Polymers",
+                "topicCode": "N"
+            }
+        ]
+    },
+    {
+        "subject": "Physics",
+        "subjectCode": "p01",
+        "topics": []
+    },
+    {
+        "subject": "Elective Mathematics",
+        "subjectCode": "m02",
+        "topics": [
+            {
+                "topic": "The Environment",
+                "topicCode": "A"
+            },
+            {
+                "topic": "Governance, Politics, and Stability",
+                "topicCode": "B"
+            },
+            {
+                "topic": "Social and Economic Development",
+                "topicCode": "C"
+            }
+        ]
+    },
+    {
+        "subject": "French",
+        "subjectCode": "f01",
+        "topics": [
+            {
+                "topic": "The Environment",
+                "topicCode": "A"
+            },
+            {
+                "topic": "Governance, Politics, and Stability",
+                "topicCode": "B"
+            },
+            {
+                "topic": "Social and Economic Development",
+                "topicCode": "C"
+            }
+        ]
+    },
+    {
+        "subject": "Financial Accounting",
+        "subjectCode": "a01",
+        "topics": [
+            {
+                "topic": "Definition and Purpose of Accounting",
+                "topicCode": "A"
+            },
+            {
+                "topic": "The Accounting Equation and Double Entry Principle",
+                "topicCode": "B"
+            },
+            {
+                "topic": "Books of Accounts",
+                "topicCode": "C"
+            },
+            {
+                "topic": "Accounting for Value Added Tax",
+                "topicCode": "D"
+            },
+            {
+                "topic": "Accounting Concepts",
+                "topicCode": "E"
+            },
+            {
+                "topic": "Final Accounts of Sole Proprietorship",
+                "topicCode": "F"
+            },
+            {
+                "topic": "Further Adjustments to Final Accounts",
+                "topicCode": "G"
+            },
+            {
+                "topic": "Correction of Errors and Suspense Account",
+                "topicCode": "H"
+            },
+            {
+                "topic": "Bank Reconciliation Statement",
+                "topicCode": "I"
+            },
+            {
+                "topic": "Control Accounts",
+                "topicCode": "J"
+            },
+            {
+                "topic": "Partnership Accounts",
+                "topicCode": "K"
+            },
+            {
+                "topic": "Single Entry and Incomplete Records",
+                "topicCode": "L"
+            },
+            {
+                "topic": "Accounting for Not-for-profit-making organizations",
+                "topicCode": "M"
+            },
+            {
+                "topic": "Manufacturing Accounts",
+                "topicCode": "N"
+            },
+            {
+                "topic": "Company Accounts",
+                "topicCode": "O"
+            },
+            {
+                "topic": "Departmental and Branch Accounts",
+                "topicCode": "P"
+            },
+            {
+                "topic": "Public Sector Accounting",
+                "topicCode": "Q"
+            },
+            {
+                "topic": "Information Technology in Accounting",
+                "topicCode": "R"
+            }
+        ]
+    },
+    {
+        "subject": "Christian Religious Studies",
+        "subjectCode": "c02",
+        "topics": [
+            {
+                "topic": "Themes from the Old Testament",
+                "topicCode": "A"
+            },
+            {
+                "topic": "Themes from the Synoptic Gospels",
+                "topicCode": "B"
+            },
+            {
+                "topic": "Themes from the Act of the Apostles, James and I Peter",
+                "topicCode": "C"
+            }
+        ]
+    },
+    {
+        "subject": "Business Management",
+        "subjectCode": "b02",
+        "topics": [
+            {
+                "topic": "Nature of Management",
+                "topicCode": "A"
+            },
+            {
+                "topic": "Functions of Management",
+                "topicCode": "B"
+            },
+            {
+                "topic": "Management Information Technology",
+                "topicCode": "C"
+            },
+            {
+                "topic": "Legal Environment Of Business",
+                "topicCode": "D"
+            },
+            {
+                "topic": "Finance and Financial Institutions",
+                "topicCode": "E"
+            },
+            {
+                "topic": "Role of Government in the Economy",
+                "topicCode": "F"
+            },
+            {
+                "topic": "International Trade and Problems of Developing Economies",
+                "topicCode": "G"
+            },
+            {
+                "topic": "Globalization and Economic Integration",
+                "topicCode": "H"
+            },
+            {
+                "topic": "Functional Management",
+                "topicCode": "I"
+            },
+            {
+                "topic": "Entrepreneurship and Small Business",
+                "topicCode": "J"
+            }
+        ]
+    },
+    {
+        "subject": "Economics",
+        "subjectCode": "e01",
+        "topics": [
+            {
+                "topic": "Fundamental Concepts in Economics",
+                "topicCode": "A"
+            },
+            {
+                "topic": "Factors of Production",
+                "topicCode": "B"
+            },
+            {
+                "topic": "Economic Systems",
+                "topicCode": "C"
+            },
+            {
+                "topic": "The Concept of Demand",
+                "topicCode": "D"
+            },
+            {
+                "topic": "The Theory of Production",
+                "topicCode": "E"
+            },
+            {
+                "topic": "Prices of Factors of Production",
+                "topicCode": "F"
+            },
+            {
+                "topic": "Theory of Cost and Revenue",
+                "topicCode": "G"
+            },
+            {
+                "topic": "Market Structures",
+                "topicCode": "H"
+            },
+            {
+                "topic": "The Distributive Trade",
+                "topicCode": "I"
+            },
+            {
+                "topic": "The Theory of Consumer Behaviour",
+                "topicCode": "J"
+            },
+            {
+                "topic": "National Income Accounting and Determination",
+                "topicCode": "K"
+            },
+            {
+                "topic": "Economic Growth and Economic Development",
+                "topicCode": "L"
+            },
+            {
+                "topic": "Agriculture",
+                "topicCode": "M"
+            },
+            {
+                "topic": "Industrialization",
+                "topicCode": "N"
+            },
+            {
+                "topic": "Money and Financial Institutions",
+                "topicCode": "O"
+            },
+            {
+                "topic": "Public Finance",
+                "topicCode": "P"
+            },
+            {
+                "topic": "International Trade",
+                "topicCode": "Q"
+            },
+            {
+                "topic": "Economic Co-operation",
+                "topicCode": "R"
+            },
+            {
+                "topic": "Economic Development Planning",
+                "topicCode": ""
+            }
+        ]
+    },
+    {
+        "subject": "Cost Accounting",
+        "subjectCode": "a02",
+        "topics": []
+    }
 ]

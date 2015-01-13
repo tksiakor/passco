@@ -1,0 +1,30 @@
+<ion-view title="Profile">
+    <ion-nav-buttons side="right">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+        <!--<progress max="100" value="50"></progress>-->
+        <!--<div class="list">-->
+
+        <a class="item item-thumbnail-left" href="#">
+            <img src="cover.jpg">
+            <h2>Username</h2>
+            <!--<p>Nine Inch Nails</p>-->
+        </a>
+        <!--</div>-->
+        <div class="list card">
+
+            <div class="item ">
+                <b>Social Studies</b>
+            </div>
+
+            <div class="item item-body">
+                <div ng-repeat ="topic in selectedProfileTopic.topic">
+                    <div class="item-divider"> {{topic.name}}</div>
+                    <meter min="0" max="{{topic.max}}" low="60" high="100" optimum="80" value="{{topic.val}}"></meter>
+                </div>
+            </div>
+
+        </div>
+    </ion-content>
+</ion-view>

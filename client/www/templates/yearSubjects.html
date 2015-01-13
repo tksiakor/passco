@@ -8,12 +8,12 @@
         <div ng-init="index=0">
             <div ng-repeat="subject in subjectTopics">
                 <div class="row responsive-sm">
-                    <a href="#/app/topics" class="item item-icon-right topic">
-                        <div class="sizing" ng-click="selectedItems.setSubject(subject.subjectCode,$index)">
+                    <a class="item item-icon-right topic">
+                        <div class="sizing" ng-click="selectedItems.setSubjectYear(subject.subject,$index)">
                             {{subject.subject}}
                             <i class="icon ion-ios7-arrow-right"></i>
                 <span class="item-note">
-                  {{numTopics($index)}} Topics : : {{userScore}}% Mastery
+                  {{numTopics($index)}} Topics : : 0% Mastery
                 </span>
                         </div>
                     </a>

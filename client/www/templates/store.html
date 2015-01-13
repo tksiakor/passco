@@ -1,5 +1,20 @@
-<ion-view title="Store">
-  <ion-content class="has-header bars-positive">
-    <h1>Store</h1>
-  </ion-content>
+<ion-view title="Store"> 
+    <ion-nav-buttons side="right"> 
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button> 
+    </ion-nav-buttons> 
+    <ion-content class="has-header"> 
+        <ul class="list"> 
+        	<a class="item item-divider">
+        	Buy subscription using SMS
+        	</a>
+            <a class="item item-icon-right" ng-repeat="subject in subjectTopics"> 
+                {{subject.subject}} 
+                <!--<i class="icon ion-ios7-arrow-right"></i>--> 
+                <button type="button" style="float: right" ng-click="showPopup()">Buy</button> 
+            </a> 
+        </ul> 
+<script id="popup-template.html" type="text/ng-template"> 
+<input ng-model="data.phone" type="tel" placeholder="PhoneNumber"> 
+</script> 
+    </ion-content> 
 </ion-view>
