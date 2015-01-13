@@ -58,12 +58,13 @@ angular.module('starter.controllers', [])
                     $scope.store.save("subjects", "");
                     $scope.store.save("level", "0");
                     $scope.store.save("counter", "0");
-                    $scope.store.save("myScore", 0);
+                    
                     $scope.userScore = parseInt($scope.store.retrieve('myScore'));
                 }
                 else {
                     $scope.store.save("isFirstTime", "1");
-                    $scope.userScore = parseInt($scope.store.retrieve('myScore'));
+                    $scope.store.save("myScore", 0);
+                    $scope.userScore = $scope.store.retrieve('myScore');
                 }
             },
             getFirstTime: function () {
@@ -395,10 +396,12 @@ angular.module('starter.controllers', [])
             subject: "",
             testType: "",
             testTypeUrl: "",
+            score: 0,
             index: "",
             setTopic: function (newTopic) {
                 this.topic = newTopic;
-                console.log("Topic Code: "+newTopic);
+                this.score = parseInt($scope.store.retrieve("myScore"));
+                console.log("Topic Code: "+newTopic+" Score: "+this.score);
                 $scope.getFiveQ(this.topic, this.subject)
                 .then(function(res){
                   //success
