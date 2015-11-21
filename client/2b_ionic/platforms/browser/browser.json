@@ -1,0 +1,28 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "org.apache.cordova.splashscreen": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        }
+    },
+    "dependent_plugins": {},
+    "modules": [
+        {
+            "file": "plugins/org.apache.cordova.splashscreen/www/splashscreen.js",
+            "id": "org.apache.cordova.splashscreen.SplashScreen",
+            "pluginId": "org.apache.cordova.splashscreen",
+            "clobbers": [
+                "navigator.splashscreen"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "passco",
+  "version": "1.0.0",
+  "description": "Backend of the passco app",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tksiakor/passco.git"
+  },
+  "keywords": [
+    "npm",
+    "passco"
+  ],
+  "author": "2b",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tksiakor/passco/issues"
+  },
+  "homepage": "https://github.com/tksiakor/passco#readme",
+  "dependencies": {
+    "express": "^4.13.3",
+    "http-server": "^0.8.5",
+    "mongoose": "^4.2.7"
+  }
+}
